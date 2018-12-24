@@ -1,0 +1,27 @@
+<div class="script-import">
+	<div class="container">
+		<h3>Import script</h3>
+		<h5>From your computer</h5>
+		<div class="jumbotron jumbotron-fluid" style="padding: 15px">
+			<div class=''>
+				<label class="btn btn-primary btn-open-file">
+	    			Choose File
+	    			<input type="file" class="d-none" (change)="onChangeFile($event)" >
+				</label> {{script_computer_file!=undefined?script_computer_file[0].name:''}}
+			</div>
+			<div>
+				<button type="button" class="btn btn-primary" (click)="onClickImport()"><i class="fas fa-file-import"></i> Import</button>
+			</div>
+		</div>
+		<h5>From Remotify.io</h5>
+		<div class="row" *ngIf="scripts">
+			<div class="col-md-4" *ngFor="let script of scripts.children" style="display: flex; text-align: center;" >
+				<div class="jumbotron jumbotron-fluid position-relative" style="padding: 15px; padding-bottom: 60px;width: 100%;" title="{{script.children[0].innerHTML}}">
+					<h6><b [innerHTML]="script.children[3].outerHTML"></b></h6>
+					<h6 [innerHTML]="script.children[4].outerHTML"></h6>
+					<div class="position-absolute btn-from-server"><a class="btn btn-primary" (click)="onClickImportFromServer(script.children[2].innerHTML)"><i class="fas fa-file-import"></i> Import</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

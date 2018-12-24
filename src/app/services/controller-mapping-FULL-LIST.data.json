@@ -1,0 +1,8 @@
+[{"id":0,"type":"Container","parent":null, "has_child":0, "color":"#78e371", "icon": "fa-clone"},
+{"id":1,"type":"Knob","parent":null, "has_child":0, "color":"#969696", "icon": "fa-power-off"},
+// {"id":2,"type":"Encoder","parent":null, "has_child":0, "color":"#487ca1", "icon": "fa-circle-notch"},
+{"id":3,"type":"Slider","parent":null, "has_child":0, "color":"#f30600", "icon": "fa-arrows-alt-v"},
+{"id":4,"type":"Crossfader","parent":null, "has_child":0, "color":"#fe8e2a", "icon": "fa-arrows-alt-h"},
+{"id":5,"type":"Pads","parent":null, "has_child":0, "color":"#dd3af7", "icon": "fa-buromobelexperte"},
+{"id":6,"type":"Keys","parent":null, "has_child":0, "color":"#f5fb37", "icon": "fa-music"},
+{"id":7,"type":"Button","parent":null, "has_child":0, "color":"#ffffff", "icon": "fa-dice-one"}]

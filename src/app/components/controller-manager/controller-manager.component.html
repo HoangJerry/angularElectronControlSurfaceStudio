@@ -1,0 +1,140 @@
+<div class="controller-manager">
+	<div>
+		<div class="container-tool">
+			<div class="row">
+				<div class="col-sm-8"><h5>Controller Manager</h5></div>
+				<div class="col-sm-4 text-right">
+					<a><i title="add controller" class="add-controller fas fa-plus" (click)="onClickAdd()"></i></a>
+					<i title="import controller" class="import-controller fas fa-file-import" (click)="onClickImport()"></i>
+				</div>
+			</div>
+		</div>
+
+		<!-- Controller Manager -->
+		<div class="container-content" >
+			<div *ngFor="let script of controllers ">
+				<div  *ngIf="script!=undefined">
+					<div class="{{script[0].type | toClassCss}} container-item" [ngClass]="selected.controller==script[0].controller_id&&selected.id==0?'active':''">
+						<div class="limmit-width d-inline-block">
+							<i class="fas fa-angle-right " *ngIf="script[0].has_child==1" (mousedown)="showChildrend(script[0].controller_id,script[0])"></i>
+							<i class="fas fa-angle-down" *ngIf="script[0].has_child==-1" (mousedown)="showChildrend(script[0].controller_id,script[0])"></i>
+						</div>		
+
+						<div class="container-title" (mousedown)="onClickItem(script[0].controller_id,0)"  title="Controller">
+							<a>
+								<i class="controller-icon fas fa-grip-horizontal"></i>
+								<h6 class="d-inline-block">{{script[0].name}}</h6>
+							</a>
+							<div class="show-hide-settings"  (mousedown)="onClickSettingIcon(script[0].controller_id,0)"><i class="fas fa-cog" title="settings form"></i></div>
+						</div>
+						<div class="container-title-right float-right">
+							<!-- <i class="fas fa-times" style="color:red"></i> -->
+							<!-- <i class="fas fa-sync-alt" style="color: yellow"></i> -->
+							<!-- <i class="far fa-check-circle" style="color:green"></i> -->
+
+							<i  class="fas fa-plus" (mousedown)="onClickForShowMapping(script[0].type,script[0].controller_id)"></i>
+							<div *ngIf="premode!=null" class="arrow-left d-inline-block">
+								
+							</div>
+						</div>
+					</div>
+					<!-- Children -->
+					<div class="container-childrent" [hidden]="script[0].has_child!=-1">
+						<div *ngFor="let val of controllers_show[script[0].controller_id]" class="{{val.type.type | toClassCss}} container-item" [ngClass]="selected.controller==script[0].controller_id&&selected.id==val.id?'active':''">	
+								<div class="container-title wut d-inline-block child child-{{val.level}}">
+									<div class="limmit-width d-inline-block" (mousedown)="showChildrend(script[0].controller_id,val)">
+										<i [hidden]="val.has_child!=1"  class="fas fa-angle-right"></i>
+										<i [hidden]="val.has_child!=-1" class="fas fa-angle-down"></i>
+									</div>	
+									<div class="container-title" (mousedown)="onClickItem(script[0].controller_id,val.id)" title="{{val.type.type}}">
+										<a>
+											<i class="controller-icon fas {{val.icon}}" [style.color]="val.type.color?val.type.color:''"></i>
+											<h6 class="d-inline-block">{{val.name}}</h6>
+										</a>
+										<div class="show-hide-settings" (mousedown)="onClickSettingIcon(script[0].controller_id,val.id)"><i class="fas fa-cog" title="settings form"></i></div>
+									</div>
+								</div>
+							<div class="container-title-right float-right">
+								<!-- <i class="fas fa-times" ></i> -->
+								<!-- <i class="fas fa-sync-alt" style="color: yellow"></i> -->
+								<!-- <i class="far fa-check-circle" style="color:green"></i> -->
+			<!-- 
+								<i class="fas fa-plus" [hidden]="!val.type.has_child" (click)="onClickForShowMapping(val.type,script[0].script_id,val.id)" ></i> -->
+							</div> 	
+						</div>
+					</div>
+					<!-- End Chilrend -->
+				</div>		
+			</div>
+		</div>
+	</div>
+	
+
+	<!-- Settings Form All -->
+	<div class="container-second" [ngClass]="{'d-none':this.second_panal.controller==null}">
+		<div class="container-add" *ngIf="selected.controller!=null&&selected.controller!=undefined&&controllers[selected.controller]!=undefined&&controllers[selected.controller][selected.id].type=='controller'">
+			<div class="container-block">
+				<label>Controller Name  </label>
+				<input type="text" name="name" value="" class="d-inline-block" [(ngModel)]="controllers[selected.controller][selected.id].name" (blur)="onChangeName()" (mousedown)="onClickInput()">
+			</div>
+			<div class="container-block">
+				<div class="container-block-item">
+					<label>Square Size</label>
+					<input type="text" name="square" value="" class="d-inline-block" [(ngModel)]="controllers[selected.controller][selected.id].square_size" (blur)="onChangeName()" (mousedown)="onClickInput()"> px
+				</div>
+				<div class="container-block-item">
+					<label>Grid Height</label>
+					<input type="text" name="height" value="" class="d-inline-block" [(ngModel)]="controllers[selected.controller][selected.id].grid_height" (blur)="onChangeName()" (mousedown)="onClickInput()">
+				</div>
+				<div class="container-block-item">
+					<label>Grid Width</label>
+					<input type="text" name="weight" value="" class="d-inline-block" [(ngModel)]="controllers[selected.controller][selected.id].grid_width" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+			</div>
+			<div class="container-block">
+				<label style="width: 100%">Color Assignments <i class="fas fa-question-circle text-white"></i></label>
+				<div *ngFor="let val of controllers[selected.controller][selected.id].color_assignments" style="margin-bottom: 8px">
+					<input type="text" name="color" value="" class="d-inline-block" [(ngModel)]="val.color" (blur)="onChangeName()" (click)="onClickInput()" style="width: 120px; margin-right: 30px">
+					<select name="select" [(ngModel)] = "val.assigment" (blur)="onChangeName()" style="width: 50px;">
+						<option  *ngFor="let assignment of selectAssignment"  value="{{assignment}}" >{{assignment}}</option>
+						option
+					</select>
+				</div>
+				<div>
+					<button type="button" class="button-add-remove" (click)="onClickAddColorAssignment()">+</button>
+					<button type="button" class="button-add-remove" (click)="onClickSubColorAssignment()">-</button>
+				</div>
+				
+			</div>
+
+		</div>
+
+		<!-- Input Settings Form only -->
+		<div class="container-add" *ngIf="selected.controller!=null&&selected.controller!=undefined&&controllers[selected.controller]!=undefined&&controllers[selected.controller][selected.id].type!='controller'">
+			
+			<app-controller-mapping-type [selectedData]="controllers[selected.controller][selected.id]" (changeSelected)="onChangeSelected($event)" (changeController)="onchangeController($event)"></app-controller-mapping-type>
+		</div>
+		
+	</div>
+
+	<!-- Controller Input Menu -->
+	<div class="container-third" [hidden]="selected.controller==null||premode==null" [ngClass]="{'d-none':this.selected.controller==null}">
+	
+		<!-- <div class="syns-width" *ngIf="script_mapping!=undefined&&selected.controller!=null&&premode!=null"> -->
+		<!-- <div class="syns-width" [hidden]="script_mapping==undefined||selected.controller==null||premode==null"> -->
+			<div *ngFor="let val of controller_mapping" class="container-item syns-width">	
+				<div class="container-title d-inline-block child">
+					<div class="limmit-width d-inline-block" (click)="showChildrendMapping(val)">
+						<i [hidden]="val.has_child!=1"  class="fas fa-angle-right"></i>
+						<i [hidden]="val.has_child!=-1" class="fas fa-angle-down"></i>
+					</div>	
+					<a (click)="onClickAddMode(val)">
+						<i  class="controller-icon fas {{val.icon}}" [style.color]="val.color?val.color:''"></i>
+						<h6 class="d-inline-block">{{val.type}}</h6>
+					</a>
+				</div>
+			</div>
+		<!-- </div> -->
+	</div>
+
+</div>

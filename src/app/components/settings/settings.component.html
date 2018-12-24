@@ -1,0 +1,43 @@
+<div class="container">
+	<label class="bold">Settings</label>
+	<div class="error error-setting" [hidden]="fileService.isError==false"> </div>
+		<hr>
+
+	<table>
+		<tr>
+			<td>Abelton Live Location</td>
+			<td>{{ abelton_location }}</td>
+			<td><input type="button" (click)="updateFolderLoc()" value="browse"></td>
+		</tr>
+		<tr>
+			<td>MIDI&nbsp;Remote&nbsp;Script&nbsp;Folder&nbsp;location:</td>
+			<td>{{ midi_script_folder_location }}</td>
+			<td><!-- <input type="button" (click)="updateFolderLoc()" value="browse"> --></td>
+		</tr>
+		<tr>
+			<td>Live Version:</td>
+			<td></td>
+			<td><select id="liveversion" (change)="changeVersion()"><option value=""></option><option value="{{ x.values }}" *ngFor="let x of live_version" [selected]="x.values == versionValue">{{ x.label }}</option></select></td>
+		</tr>
+		<tr>
+			<td>Log.txt location:</td>
+			<td>{{ log_txt_location }}</td>
+			<td><input type="button" (click)="updateFileLoc()" value="browse"></td>
+		</tr>
+
+		<tr>
+			<td>Show Grid:</td>
+			<td></td>
+			<td><input type="checkbox" name="show grid" [checked]="fileService.settings.show_grid" (change)="fileService.settings.show_grid = !fileService.settings.show_grid; updateSetting();"></td>
+		</tr>
+
+		<tr class="d-none">
+			<td>Show MIDI Controller input name:</td>
+			<td></td>
+			<td><input type="checkbox" name="show controller input name" [checked]="fileService.settings.show_controller_input_name" (change)="fileService.settings.show_controller_input_name = !fileService.settings.show_controller_input_name; updateSetting();"></td>
+		</tr>
+
+	</table>
+
+		<hr>
+</div>	

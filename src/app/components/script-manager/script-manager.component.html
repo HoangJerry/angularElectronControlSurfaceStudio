@@ -1,0 +1,112 @@
+<div class="script-manager" >
+	<div>
+		<div class="container-tool">
+			<div class="row">
+				<div class="col-sm-8"><h5>Script Manager</h5></div>
+				<div class="col-sm-4 text-right">
+					<a class="add-script" title="add script"><i class="fas fa-plus" (click)="onClickAdd()"></i></a>
+					<i class="fas fa-file-import import-script" title="import script" (click)="onClickImport()"></i>
+				</div>
+			</div>
+		</div>
+
+		<!-- Script Manager -->
+		<div class="container-content" >
+
+			<div *ngFor="let script of scripts ">
+				<div  *ngIf="script!=undefined">
+					<div class="{{script[0].type | toClassCss}} container-item" [ngClass]="selected.script==script[0].script_id&&selected.id==0?'active':''">
+						<div class="limmit-width d-inline-block">
+							<i class="fas fa-angle-right " *ngIf="script[0].has_child==1" (click)="showChildrend(script[0].script_id,script[0])"></i>
+							<i class="fas fa-angle-down" *ngIf="script[0].has_child==-1" (click)="showChildrend(script[0].script_id,script[0])"></i>
+						</div>		
+						<div class="container-title" (mousedown)="onClickItem(script[0].script_id,0)" title="script">
+							<a>
+								<i class="script-icon fas fa-file-alt"></i>
+								<h6 class="d-inline-block">{{script[0].name}}</h6>
+							</a>
+							<div class="show-hide-settings" (mousedown)="onClickSettingIcon(script[0].script_id,0)"><i class="fas fa-cog" title="settings form"></i></div>
+						</div>
+						<div class="container-title-right float-right">
+							<a *ngIf="fileService.purchasedApp==false;" id="ready-{{script[0].script_id}}" class="update" (click)="goTo()"><img src="assets/images/install-script-disabled.svg" style="cursor: not-allowed;" title="purchase licence to generate scripts"/></a>
+							<a *ngIf="fileService.purchasedApp==true;" id="ready-{{script[0].script_id}}" class="update" (click)="installScript(script[0].script_id,script[0].controller_id)"><img src="assets/images/install-script-ready.svg" title="Install into Ableton Live"/></a>
+							<a id="installing-{{script[0].script_id}}" style="display: none;"><img class="update" src="assets/images/install-script-installing.svg" title="Installing into Ableton Live"/></a>
+							<!-- <i class="fas fa-sync-alt" style="color: yellow"></i> -->
+							<!-- <i class="far fa-check-circle" style="color:green"></i> -->
+
+							<i class="fas fa-plus" (mousedown)="onClickForShowMapping(script[0].type,script[0].script_id)"></i>
+						</div>
+					</div>
+					<!-- Children -->
+					<div class="container-childrent" [hidden]="script[0].has_child!=-1">
+						<div *ngFor="let val of scripts_show[script[0].script_id]" class="{{val.type.type | toClassCss}} container-item" [ngClass]="selected.script==script[0].script_id&&selected.id==val.id?'active':''">	
+								<div class="container-title d-inline-block child-{{val.level}}" title="{{val.type.type}}">
+									<div class="limmit-width d-inline-block" (mousedown)="showChildrend(script[0].script_id,val)">
+										<i [hidden]="val.has_child!=1"  class="fas fa-angle-right"></i>
+										<i [hidden]="val.has_child!=-1" class="fas fa-angle-down"></i>
+									</div>	
+									<div class="container-title" (mousedown)="onClickItem(script[0].script_id,val.id)"val.id>
+										<a>
+											<i class="script-icon fas {{val.type.icon}}"></i>
+											<h6 class="d-inline-block">{{val.name}}</h6>
+										</a>
+										<div class="show-hide-settings" (mousedown)="onClickSettingIcon(script[0].script_id,val.id)"><i class="fas fa-cog" title="settings form"></i></div>
+									</div>
+								</div>
+							<div class="container-title-right float-right">
+								<!-- <i class="fas fa-sync-alt" style="color: yellow"></i> -->
+								<!-- <i class="far fa-check-circle" style="color:green"></i> -->
+
+								<i class="fas fa-plus" [hidden]="!val.type.has_child" (mousedown)="onClickForShowMapping(val.type,script[0].script_id,val.id)"></i>
+							</div> 	
+						</div>
+					</div>
+					<!-- End Chilrend -->
+				</div>		
+			</div>
+		</div>
+	</div>
+	
+	<!-- Settings Form -->
+	<div class="container-second" [ngClass]="{'d-none':this.second_panal.script==null}"  *ngIf="selected.script!=null&&selected.script!=undefined&&scripts[selected.script]!=undefined">
+		<div class="container-add" *ngIf="selected.script!=null&&selected.script!=undefined&&scripts[selected.script]!=undefined&&scripts[selected.script][selected.id].type=='script'" style="padding: 25px;">
+			<div class="">
+				<label>Scipt Name  </label>
+				<input type="text" name="name" value="" class="d-inline-block" [(ngModel)]="scripts[selected.script][selected.id].name" (blur)="onChangeName()" (mousedown)="onClickInput()">
+			</div>
+			<div class=""  *ngIf="controllers">
+				<label>Controller</label>
+				 <select name="select" [ngModel] = "scripts[selected.script][selected.id].controller_id" (blur)="onChangeName()" (change)="onChangeSelectController($event.target.value)">
+					<option  *ngFor="let controller of controllers | notUndefined"  value="{{controller[0].controller_id}}" >{{controller[0].name}}</option>
+					option
+				</select>
+			</div>
+		</div>
+
+		<div class="container-add" *ngIf="selected.script!=null&&selected.script!=undefined&&scripts[selected.script]!=undefined&&scripts[selected.script][selected.id].type!='script'">
+			<app-script-mapping-type [selectedData]="scripts[selected.script][selected.id]" (changeSelected)="onChangeSelected($event)" [controllers]="controllers[scripts[selected.script][0].controller_id]" (changeScript)="onChangeScript($event)"></app-script-mapping-type>
+		</div>
+		
+	</div>
+
+	<!-- Mapping Menu -->
+	<div class="container-third" [hidden]="selected.script==null||premode==null" [ngClass]="{'d-none':this.selected.script==null}">
+		<!-- <div class="syns-width" *ngIf="script_mapping!=undefined&&selected.script!=null&&premode!=null"> -->
+		<div class="syns-width" [hidden]="script_mapping==undefined||selected.script==null||premode==null" *ngIf="script_mapping_show!=undefined">
+			<div *ngFor="let val of script_mapping_show" class="container-item">	
+				<div *ngIf="selected.script!=null&&scripts[selected.script]!=undefined" class="container-title d-inline-block child-{{val.parent!=scripts[selected.script][selected.id].type.id ? val.level+' child--1':val.level}}">
+					<div class="limmit-width d-inline-block" (click)="showChildrendMapping(val)">
+						<i [hidden]="val.has_child!=1"  class="fas fa-angle-right"></i>
+						<i [hidden]="val.has_child!=-1" class="fas fa-angle-down"></i>
+					</div>	
+					<a (click)="onClickAddMapping(val)">
+						<i class="script-icon fas {{val.icon}}"></i>
+						<h6 class="d-inline-block">{{val.type}}</h6>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+

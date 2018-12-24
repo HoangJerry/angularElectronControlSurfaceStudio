@@ -1,0 +1,67 @@
+.header {
+	background-color: #3f3f3f;
+	height: 40px;
+	
+	.logo {
+		color: #fff;
+		display: inline-block;
+		font-size: 18;
+		margin-right: 15%;
+		position: relative;
+    top: 7px;
+	}
+
+	.icon-center {
+		display: inline-block;
+		color: #fff;
+	}
+	.nav{
+		font-size : 18;
+
+		li {
+			cursor: pointer;
+		}
+
+		.logout {
+			position: relative;
+			top: 2px;
+		}
+
+	}
+	ul>li{
+		margin:0 15px;
+	}
+	.dropdown{
+		
+    	position: absolute;
+    	z-index: 99;
+    	margin: 7px 0px 0px -67px;
+    	width:420px;
+    	display:none;
+    	font-size:14px;
+
+	}
+	.fa-circle{
+		color:red;
+		position:absolute;
+		font-size:8px;
+	}
+	.settings{
+		margin: 7px 0px 0px -133px !important;
+	}
+ .has-role{
+ 		float : right;
+ }
+ .has-role img{
+	 	width: 65px;
+	  margin-top: 6px;
+
+	  &.pro-not-active {
+		 	width: 120px;
+		  margin-top: 0px;
+		 }
+ }
+ .green{
+ 	color:rgb(105, 234, 105);
+ }
+}

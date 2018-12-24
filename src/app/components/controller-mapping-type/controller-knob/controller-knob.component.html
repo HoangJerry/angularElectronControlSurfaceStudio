@@ -1,0 +1,33 @@
+<div class="container-block">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Name</label>
+		<select name="select" [(ngModel)] = "selected.name" (blur)="onChangeName()">
+			<option  *ngFor="let knob_name of knob_names_show"  value="{{knob_name.name}}" >{{knob_name.name}}</option>
+			option
+		</select>
+	</div>
+</div>
+<div class="container-block knob">
+	<div class="">
+		<label>Radius </label>
+		<input type="number" name="control_knob_radius" value="" class="d-inline-block" [(ngModel)]="selected.control_knob_radius" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Left </label>
+		<input type="number" name="control_knob_left" value="" class="d-inline-block" [(ngModel)]="selected.control_knob_left" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Top </label>
+		<input type="number" name="control_knob_top" value="" class="d-inline-block" [(ngModel)]="selected.control_knob_top" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Align to <i class="fas fa-question-circle text-white"></i></label>
+		<select name="control_knob_align_to" [(ngModel)] = "selected.control_knob_align_to" (blur)="onChangeName()">
+			<option  *ngFor="let value of selectAlignTo"  value="{{value}}" >{{value}}</option>
+			option
+		</select>
+	</div>
+</div>

@@ -1,0 +1,14 @@
+<div class="error-log container">
+	<label class="bold">Logged Remote Script Errors</label>
+	<hr>
+	<div class="content">
+	<table>
+		<tr *ngFor="let x of showError;">
+			<td>{{ x }}</td>
+		</tr>
+		
+	</table>
+	</div>
+	<hr>
+	<input type="button" class="btn" (click)="clearLog()" name="" id="button" value="Clear Log">
+</div>	

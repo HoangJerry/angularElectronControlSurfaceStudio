@@ -1,0 +1,52 @@
+<div class="container-block">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Name</label>
+		<select name="select" [(ngModel)] = "selected.name" (blur)="onChangeName()">
+			<option  *ngFor="let button_name of button_names_show"  value="{{button_name.name}}" >{{button_name.name}}</option>
+			option
+		</select>
+	</div>
+</div>
+<div class="container-block button">
+	<div class="">
+		<label>Shape </label>
+		<select name="control_button_shape" [(ngModel)] = "selected.control_button_shape" (blur)="onChangeName()">
+			<option  *ngFor="let value of selectShape"  value="{{value}}" >{{value}}</option>
+			option
+		</select>
+	</div>
+	<div class="">
+		<label>Left </label>
+		<input type="number" name="control_button_left" value="" class="d-inline-block" [(ngModel)]="selected.control_button_left" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Top </label>
+		<input type="number" name="control_button_top" value="" class="d-inline-block" [(ngModel)]="selected.control_button_top" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div *ngIf="selected.control_button_shape=='Round'">
+		<div class="">
+			<label>Radius </label>
+			<input type="number" name="control_button_radius" value="" class="d-inline-block" [(ngModel)]="selected.control_button_radius" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+		<div class="">
+			<label>Align to <i class="fas fa-question-circle text-white"></i></label>
+			<select name="control_button_align_to" [(ngModel)] = "selected.control_button_align_to" (blur)="onChangeName()">
+				<option  *ngFor="let value of selectAlignTo"  value="{{value}}" >{{value}}</option>
+				option
+			</select>
+		</div>
+	</div>
+	<div *ngIf="selected.control_button_shape=='Square'">
+		<div class="">
+			<label>Width </label>
+			<input type="number" name="control_button_width" value="" class="d-inline-block" [(ngModel)]="selected.control_button_width" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+		<div class="">
+			<label>Height </label>
+			<input type="number" name="control_button_height" value="" class="d-inline-block" [(ngModel)]="selected.control_button_height" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+	</div>
+</div>

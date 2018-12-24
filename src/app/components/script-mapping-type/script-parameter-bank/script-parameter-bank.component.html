@@ -1,0 +1,11 @@
+<div class="container-block">
+	<div class="">
+		<label *ngIf="selected.type.type=='Parameter Bank'">Parameters</label>
+		<label *ngIf="selected.type.type=='Sends'">Number of Sends</label>
+		<label *ngIf="selected.type.type=='Reactions'">Reactions</label>
+		<select name="select" [(ngModel)] = "selected.parameters" (change)="onChangeName()">
+			<option  *ngFor="let parameter of selectParameters"  value="{{parameter}}" >{{parameter}}</option>
+			option
+		</select>
+	</div>
+</div>

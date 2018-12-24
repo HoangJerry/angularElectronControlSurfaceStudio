@@ -1,0 +1,66 @@
+.container-block{
+  padding: 25px;
+  border-bottom: 1px #464646 solid;
+  label{
+    width: 150px;
+    font-weight: 800;
+    display: inline-block;
+  }
+
+  input, select, select:focus {
+    width: 200px;
+    display: inline-block;
+    height: 25px;
+      border: none;
+      color: #fff;
+      outline: none ;
+  }
+
+  input{
+    background-color: #fff;
+    color: #000;
+  }
+
+  .radio{
+    input{
+      width: 30px;
+      height: 15px;
+    }
+  }
+
+  .control{
+    input {
+      width: 60px;
+      text-align: center;
+    }
+  }
+    input[type='range'] {
+      overflow: hidden;
+      -webkit-appearance: none;
+      background-color: #fff;
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color: #87c2e7;
+      margin-top: -1px;
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+      width: 10px;
+      -webkit-appearance: none;
+      height: 10px;
+      cursor: ew-resize;
+      background: #87c2e7;
+      box-shadow: -100px 0 0 100px #87c2e7;
+    }
+
+  .min-max-value{
+    top:0px; 
+    left:50%; 
+    margin-left:-5px;
+    color:black;
+  }
+
+}

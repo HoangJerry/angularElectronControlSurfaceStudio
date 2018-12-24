@@ -1,0 +1,37 @@
+.container-block{
+	padding: 25px;
+	border-bottom: 1px #464646 solid;
+	label{
+		width: 150px;
+		display: inline-block;
+		font-weight: 800;
+
+		.text-black{
+			color: black;
+		}
+	}
+
+	input, select, select:focus {
+		width: 60px;
+		display: inline-block;
+		// height: 25px;
+	    border: none;
+	    color: #fff;
+	    outline: none ;
+	}
+
+	input{
+		background-color: #fff;
+		color: #000;
+	}
+}
+.control-type{
+	select, select:focus {
+		width: 120px;
+	}
+	.radio{
+		input{
+			width: 30px;
+		}
+	}
+}

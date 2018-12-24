@@ -1,0 +1,167 @@
+<div class="container-fluid">
+	<div class="box" id="b1">
+		<div class="jumbotron jumbo">
+		  <img class="lead lead1" src="assets/images/icons/Remotify.png"/>
+		  <div class="new_jumbo">
+		  <h3 class="display-4">CONTROL SURFACE STUDIO</h3>
+		 		<div style="text-align: center;">
+				  <p class="text-center">Checking for updates</p>
+				  <img class="lead lead1" style="width:18px;" src="assets/images/icons/loader.gif"/>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="box" id="b2" style="display: none;">
+		<div class="jumbotron jumbo">
+			<img class="lead lead1" src="assets/images/icons/Remotify.png"/>
+			<div class="new_jumbo">
+			<h3 class="display-4">CONTROL SURFACE STUDIO</h3>
+
+				<div class="card card1">
+					<div class="card-body">
+					<h5 class="card-title">An update is available</h5>
+					<p class="card-text">To Continue using the App, you will need to update to the latest version.</p>
+					<a href="#" (click)="updateApp()" class="card-link">Download Now</a>
+					</div>
+				</div>
+
+			</div>	
+		</div>
+	</div>
+	<div class="box" id="b3" style="display: none;">
+		<div class="jumbotron jumbo">  
+		  	<img class="lead lead1 logo" src="assets/images/icons/remotify.png"/>
+			<div class="new_jumbo">
+		  	<h3 class="display-4">CONTROL SURFACE STUDIO</h3>
+		 
+			  <div class="card card2">
+			  	<div class="error error-login"> Failed to login: user does not exist </div>
+			  	<img class="lead lead1" id="login-lead" style="width:18px;margin:auto;display:none;" src="assets/images/icons/login-loader.gif"/>
+			    <h3 style="font-size: 24px;font-weight: 600;color: #4e4747;margin-bottom:5%; ">Login</h3>
+				  <form action="/action_page.php">
+				    <div class="form-group">
+				      <img class="position_img" src="assets/images/icons/username.png">
+				      <input type="email" [(ngModel)]="username" class="form-control" id="email" name="email" placeholder="Email or Username">
+				    </div>
+				    <div class="form-group">
+				      <img class="position_img" src="assets/images/icons/lock.png">
+				      <input type="password" [(ngModel)]="password" class="form-control" id="pwd" name="pswd" placeholder="Password">
+				    </div>
+				    
+				    <button type="button" (click)="login()" class="btn btn-primary btn_new">Login</button>
+				    <div class="for_pass">
+				      <a href="#" class="card-link" (click)="showModel('b4')">Forgotten Password</a>
+				      <br>
+				    <a href="#" class="card-link" (click)="showModel('b5')">Create a New Account</a>
+				    </div>
+				  </form>
+			  </div>
+		  
+		  </div>
+	</div>
+	</div>
+	<div class="box" id="b4" style="display: none;">
+		<div class="jumbotron jumbo">
+		    <img class="lead lead1" src="assets/images/icons/Remotify.png"/>
+			<div class="new_jumbo">
+		    <h3 class="display-4">CONTROL SURFACE STUDIO</h3>
+		 
+		    <div class="card card2">
+		    	<div class="error error-forgotPassword"> </div>
+		    	<div class="success success-forgotPassword"></div>
+		    	<img class="lead lead1" id="forgot-password" style="width:18px;margin:auto;display:none;" src="assets/images/icons/login-loader.gif"/>
+		      <h3 style="font-size: 24px;font-weight: 600;color: #4e4747;margin-bottom:5%; ">Forgotten Password</h3>
+		      <form action="/action_page.php">
+		        <div class="form-group">
+		          <img class="position_img" src="assets/images/icons/username.png">
+		          <input type="email" class="form-control" [(ngModel)]="model.forgot_password_email" id="forgot_password_email" name="forgot_password_email" placeholder="Email or Username">
+		        </div>
+		        
+		        <button type="button" (click)="requestNewPassword()" class="btn btn-primary btn_new btn_new1">Email New Password</button>
+		        <div class="for_pass">
+		          <a href="#" class="card-link" (click)="showModel('b3')">Login</a>
+		          <br>
+		        <a href="#" class="card-link" (click)="showModel('b5')">Create a New Account</a>
+		        </div>
+		      </form>
+		    </div>
+		  
+		  </div>
+		</div>
+	</div>
+	<div class="box" id="b5" style="display: none;">
+		<div class="jumbotron jumbo">
+		    <img class="lead lead1" src="assets/images/icons/Remotify.png"/>
+			<div class="new_jumbo">
+		    <h3 class="display-4">CONTROL SURFACE STUDIO</h3>
+		 		
+		    <div class="card card2">
+		    	<div class="error-register"> </div>
+		    	<div class="success success-register"> </div>
+		    	<img class="lead lead1" id="register-lead" style="width:18px;margin:auto;display:none;" src="assets/images/icons/login-loader.gif"/>
+		      <h3 style="font-size: 24px;font-weight: 600;color: #4e4747;margin-bottom:5%; ">Create an account</h3>
+		      <form action="/action_page.php">
+		        <div class="form-group">
+		          <img class="position_img" src="assets/images/icons/username.png">
+		          <input type="name" class="form-control" [(ngModel)]="model.name"  id="email" name="name" placeholder="Username">
+		        </div>
+		        <div class="form-group">
+		          <img class="position_img" src="assets/images/icons/email.png">
+		          <input type="email" class="form-control" [(ngModel)]="model.email" id="email" name="email" placeholder="Email">
+		        </div>
+		        <div class="form-group">
+		          <img class="position_img" src="assets/images/icons/lock.png">
+		          <input type="password" class="form-control" [(ngModel)]="model.password" id="pwd" name="pswd" placeholder="Password">
+		        </div>
+		        <div class="form-group">
+		          <img class="position_img" src="assets/images/icons/lock.png">
+		          <input type="password" class="form-control" id="pwd" [(ngModel)]="model.cnfpassword" name="pswd" placeholder="Confirm Password">
+		        </div>
+		        
+		        <button type="button" (click)="register()" class="btn btn-primary btn_new">Register</button>
+		        <div class="for_pass">
+		          <a href="#" class="card-link" (click)="showModel('b3')">Back to Login</a>
+		        </div>
+		      </form>
+		    </div>
+		  
+		  </div>
+		</div>
+	</div>
+	<div class="box" id="b6" style="display: none;">
+		<div class="jumbotron jumbo">
+		    <img class="lead lead1" src="assets/images/icons/Remotify.png"/>
+			<div class="new_jumbo">
+		    <h3 class="display-4">CONTROL SURFACE STUDIO</h3>
+		 
+		    <div class="card card1">
+		      <div class="card-body">
+		        
+		        <p class="card-text">A Welcome message with furtherinstructions has been sent to your e-mail address.</p>
+		        <a href="#" class="card-link" (click)="showModel('b3')">Back to Login</a>
+		        
+		      </div>
+		    </div>
+		  
+		  </div>
+		</div>
+	</div>
+	<div class="box" id="b7" style="display: none;">
+		<div class="jumbotron jumbo">
+		    <img class="lead lead1" src="assets/images/icons/Remotify.png"/>
+			<div class="new_jumbo">
+		    <h3 class="display-4">CONTROL SURFACE STUDIO</h3>
+		 
+		    <div class="card card1">
+		      <div class="card-body">
+		        
+		        <p class="card-text">Further instructions has been sent to your e-mail address.</p>
+		        <a href="#" class="card-link" (click)="showModel('b3')">Back to Login</a>
+		        
+		      </div>
+		    </div>
+		  
+		  </div>
+		</div>
+	</div>
+</div>

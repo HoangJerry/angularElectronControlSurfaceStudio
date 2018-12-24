@@ -1,0 +1,75 @@
+<div *ngIf="controllers&&controllers[0]!=undefined">
+	<div class="midi-controller" [ngStyle]="{'width.px':controllers[0].grid_width?controllers[0].grid_width*controllers[0].square_size:0,'height.px':controllers[0].grid_height?controllers[0].grid_height*controllers[0].square_size:0}">
+		<div *ngIf="currentSetting!=undefined&&currentSetting.show_grid" class="grid" [ngStyle]="{'background-size':controllers[0].square_size?controllers[0].square_size+'px '+controllers[0].square_size+'px':0}">
+			
+		</div>
+		<div *ngFor="let controller of controllers" >
+			<div *ngIf="controller!=null">
+				<input *ngIf="controller.type.type=='Slider'" title ="{{controller.name}}" class="position-absolute slider rotate-90-deg" type="range" min="1" max="100" [(ngModel)]="controller.value" [ngStyle]="{'height.px':controllers[0].square_size*controller.width, 'width.px':controllers[0].square_size*controller.height, 'top.px':controllers[0].square_size*controller.top - -(controller.height -controller.width)*controllers[0].square_size/2 , 'left.px':controllers[0].square_size*controller.left-(controller.height -controller.width)*controllers[0].square_size/2 }" id="slider-{{controller.id}}" (change)="onChangeSilder()" [ngClass]="selected!=null&&controller==selected?'active':''" (click)="onClickControllerItem(controller)">
+				
+			<div *ngIf="controller!=null&&controller!=undefined">
+				<input *ngIf="controller.type.type=='Slider'" title ="{{controller.name}}" class="position-absolute slider rotate-90-deg" type="range" min="1" max="100" [(ngModel)]="controller.value" [ngStyle]="{'height.px':controllers[0].square_size*controller.width, 'width.px':controllers[0].square_size*controller.height, 'top.px':controllers[0].square_size*controller.top - -(controller.height -controller.width)*controllers[0].square_size/2 , 'left.px':controllers[0].square_size*controller.left-(controller.height -controller.width)*controllers[0].square_size/2 }" id="slider-{{controller.id}}" (change)="onChangeSilder()" [ngClass]="selected!=null&&controller==selected?'active':''" (click)="onClickControllerItem(controller)">
+				
+				<div *ngIf="controller.type.type=='Knob'" title ="{{controller.name}}" class="position-absolute knob" [ngStyle]="{'height.px':controller.control_knob_radius*controllers[0].square_size, 'width.px':controller.control_knob_radius*controllers[0].square_size, 'top.px':controller.control_knob_align_to=='left'?controllers[0].square_size*controller.control_knob_top:controllers[0].square_size*(controller.control_knob_top-controller.control_knob_radius/2),'left.px':controller.control_knob_align_to=='left'?controllers[0].square_size*controller.control_knob_left:controllers[0].square_size*(controller.control_knob_left-controller.control_knob_radius/2),'margin.px':-4,'padding.px':selected!=null&&controller==selected?0:4,'box-sizing':'unset'}" (blur)="onBlurKnob(controller)" [ngClass]="selected!=null&&controller==selected?'active-unset':''" (click)="onClickControllerItem(controller)">
+					<div class="position-relative">
+						<div class="position-absolute knob-background"></div>
+						<jqxKnob [width]="controller.control_knob_radius*controllers[0].square_size" [height]="controller.control_knob_radius*controllers[0].square_size" [(value)]="controller.value" [min]="0" [max]=100  [startAngle]="120" [endAngle]=420 [rotation]='counterclockwise'
+							
+							[progressBar]="{style: { fill: '#d7f1ff', stroke: '#' },
+			                    size: '16%',
+			                    offset: '83%',
+			                    background: { fill: 'grey', stroke: 'grey' }}"
+			                [pointer] = "{
+			                    type: 'line', thickness: 4, style: { fill: '#fff', stroke: '#fff' },
+			                    size: '84%', offset: '0%'
+			                }" 
+			                (onChange)="onChangeKnob($event)" (click)="onClickControllerItem(controller)"></jqxKnob>
+					</div>
+					
+				</div>
+
+				<div *ngIf="controller.type.type=='Button'" title ="{{controller.name}}" class="position-absolute button" [ngStyle]="{
+					'top.px':controller.control_button_align_to=='center'?controllers[0].square_size*(controller.control_button_top-controller.control_button_radius/2):controllers[0].square_size*controller.control_button_top,
+					'left.px':controller.control_button_align_to=='center'?controllers[0].square_size*(controller.control_button_left-controller.control_button_radius/2):controllers[0].square_size*controller.control_button_left,
+					'margin.px':-4,'box-sizing':'unset','padding.px':selected!=null&&controller==selected?0:4
+				}" [ngClass]="selected!=null&&controller==selected?'active':''" (click)="onClickControllerItem(controller)">
+					<button class="button-background" [ngClass]="{'active-button':controller.button_status==1}" (click)="controller.button_status=controller.button_status*-1;" type="button" *ngIf="controller.control_button_shape=='Square'" [ngStyle]="{
+						'height.px':controllers[0].square_size*controller.control_button_height,
+						'width.px':controllers[0].square_size*controller.control_button_width,
+						'border-width.px':controller.control_button_width<=controller.control_button_height?controllers[0].square_size*controller.control_button_width*10/100:controllers[0].square_size*controller.control_button_height*10/100}" >
+					</button>
+					<button class="button-background radius" [ngClass]="{'active-button':controller.button_status==1}" (click)="controller.button_status=controller.button_status*-1; onChangeSilder()" type="button" *ngIf="controller.control_button_shape=='Round'"
+				    [ngStyle]="{
+						'height.px':controllers[0].square_size*controller.control_button_radius,
+						'width.px':controllers[0].square_size*controller.control_button_radius,'border-width.px':controllers[0].square_size*controller.control_button_radius*10/100}">
+					</button>
+				</div>
+
+				<div  *ngIf="controller.type.type=='Pads'" title ="{{controller.name}}" class="row position-absolute"  [ngStyle]="{ 'top.px':controllers[0].square_size*controller.control_pads_top,
+					'left.px':controllers[0].square_size*controller.control_pads_left,
+					'width.px':controllers[0].square_size*controller.control_pads_width,
+					'height.px':controllers[0].square_size*controller.control_pads_height,
+					 'padding.px':selected!=null&&controller==selected?0:4 }" style="margin: -4px; box-sizing: unset;" [ngClass]="selected!=null&&controller==selected?'active':''" (click)="onClickControllerItem(controller)">
+					<div *ngFor="let pad of controllers | pads : controller" title ="{{pad.name}}" class="d-inline-block" id="controllers[{{controllers[0].controller_id}}][{{pad.id}}]"[ngStyle]="{'background':'#c4c4c4',
+							'width.px':controllers[0].square_size*controller.control_pads_width/controller.control_pads_columns - 8,
+							'height.px':controllers[0].square_size*controller.control_pads_height /controller.control_pads_rows -8,'border':selected==pad?'':'1px solid black'}" 
+							style="margin: 4px; box-sizing: border-box"  (click)=" onClickControllerItem(pad); " >
+					</div>
+				</div>
+
+				<app-midi-keys title ="{{controller.name}}" class="position-absolute"*ngIf="controller.type.type=='Keys'" [selectedData]="selected" [controller]="controller" [padding] ="selected!=null&&controller==selected?0:4" [square_size]="controllers[0].square_size" [controllerKeys]="controllers | pads : controller" [ngStyle]="{'left.px':controllers[0].square_size*controller.control_keys_left,
+									'top.px':controllers[0].square_size*controller.control_keys_top,'height.px':controllers[0].square_size*controller.control_keys_height,'margin.px':-4,'box-sizing':'unset','padding.px':4}"  [ngClass]="selected!=null&&controller==selected?'active-keys':''" (click)="onClickControllerItem(controller)" (clickKey)="onClickControllerItem($event)"></app-midi-keys>
+
+				<div title ="{{controller.name}}" class="input-type-container position-absolute" *ngIf="controller.type.type=='Container'" [ngStyle]="{'left.px':controllers[0].square_size*controller.control_container_left, 'top.px':controllers[0].square_size*controller.control_container_top, 'height.px':controllers[0].square_size*controller.control_container_height, 'width.px':controllers[0].square_size*controller.control_container_width,'z-index':-1,
+				 'margin.px':-4,'box-sizing':'unset','padding.px':4}" [ngClass]="selected!=null&&controller==selected?'active-keys':''">
+				 	<div>
+				 	</div>
+				</div>
+
+				<input title ="{{controller.name}}" *ngIf="controller.type.type=='Crossfader'" class="position-absolute slider" type="range" min="1" max="100" [(ngModel)]="controller.value" [ngStyle]="{'width.px':controllers[0].square_size*controller.width, 'height.px':controllers[0].square_size*controller.height, 'top.px':controllers[0].square_size*controller.top, 'left.px':controllers[0].square_size*controller.left}" id="crossfader-{{controller.id}}" (change)="onChangeSilder()" [ngClass]="selected!=null&&controller==selected?'active':''" (click)="onClickControllerItem(controller)">
+
+
+			</div>
+		</div>
+	</div>
+</div>

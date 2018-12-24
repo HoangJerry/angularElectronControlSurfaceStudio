@@ -1,0 +1,147 @@
+.container-fluid{
+	background:#000;
+	padding-right:unset;
+	padding-left:unset;
+}
+.box{
+	height:100vh;
+	background:#fff;
+	margin: auto;
+
+}
+.text-center{
+	margin-top:5rem;
+	
+}
+.jumbo {
+	height:100vh;
+	padding: 12rem 17rem;
+	background: #3598db;
+	border-radius: 0px !important;
+	margin:auto;
+
+}
+
+.new_jumbo h3{
+	font-weight: bold;
+	color: #fff;
+	margin-bottom: 5%;
+	text-align:center;
+}
+.card h3{
+	text-align:left;
+}
+.card-body a{
+        text-decoration: underline;
+}
+.card1 {
+  width: 23rem;
+  margin: 0 auto;
+  border-radius: 0px;
+  box-shadow: -1px 3px 8px #0000004d;
+}
+.card-title{
+	color: #575757;
+	font-weight: bold;
+}
+a{
+	color:#000;
+}
+.card2 {
+  width: 23rem;
+  margin: 0 auto;
+  border-radius: 0px;
+  box-shadow: -1px 3px 8px #0000004d;
+  padding: 4% 2%;
+  
+}
+.card2 input {
+width: 90%;
+float: right;
+border-left: 0px;
+border-right: 0px;
+border-top: 0px;
+border-radius: 0px;
+height: 27px;
+padding: 0px;
+}
+.btn_new{
+   background: #3598db;
+   padding: 5px 20px;
+}
+.for_pass {
+  width: 40%;
+  float: right;
+}
+.for_pass a{
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+  color: #000;
+  float: right;
+}
+.form-control:focus{
+	box-shadow:none;
+}
+@media screen and (max-width: 1400px) {
+  .lead1{
+   margin-left:5%;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .display-4{
+  	font-size:3.0rem;
+  }
+  .lead1{
+   margin-left:5%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .display-4{
+  	font-size:2.5rem;
+  }
+  .lead1{
+   margin-left:5%;
+  }
+}
+@media screen and (max-width: 1072px) {
+  .display-4{
+  	font-size:2.0rem;
+  }
+  .lead1{
+   margin-left:5%;
+  }
+}
+@media screen and (max-width: 980px) {
+  .display-4{
+  	font-size:1.8rem;
+  }
+  .lead1{
+   margin-left:5%;
+  }
+}
+.error{
+	background:#fff7f7;
+	border : 1px solid #ff2626;
+	color:#5a0404;
+	padding:10px;
+	display:none;
+}
+.error-register{
+  background:#fff7f7;
+  border : 1px solid #ff2626;
+  color:#5a0404;
+  padding:10px;
+  display:none;
+}
+.success{
+  background:#ccf9d6;
+  border : 1px solid #0bbf34;
+  color:#02290b;
+  padding:10px;
+  display:none;
+}
+.logo {
+  width: 80px;
+}

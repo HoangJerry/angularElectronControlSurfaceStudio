@@ -1,0 +1,65 @@
+<div class="container-block" >
+	<div class="sess-width">
+		<label>Tracks <i class="fas fa-question-circle text-white"></i></label>
+		<select name="select" [(ngModel)] = "selected.session_box_width" (change)="onChangeWidthHeight()">
+			<option  *ngFor="let width of selectSessBoxWidth"  value="{{width}}" >{{width}}</option>
+			option
+		</select>
+	</div>
+
+	<div class="sess-height">
+		<label>Scenes <i class="fas fa-question-circle text-white"></i></label>
+		<select name="select" [(ngModel)] = "selected.session_box_height" (change)="onChangeWidthHeight()">
+			<option  *ngFor="let height of selectSessBoxHeight"  value="{{height}}" >{{height}}</option>
+			option
+		</select>
+	</div> 	
+
+	<table class="table session-box">
+		<tbody>
+			<tr class="box-header">
+				<td *ngFor="let tracks of selected.session_box_width | toArray" class="tracks">{{tracks}}</td>
+				<td>Scenes</td>
+			</tr>
+
+		<!-- first get each row -->
+		<tr *ngFor="let i of selected.session_box_height | toArray">
+			<!-- now get each individual clip -->
+			<ng-container *ngIf="selected.session_box_clips[i-1]!=undefined">
+				<td *ngFor="let ci of selected.session_box_width | toArray" [ngClass]="{'red-left': ci == 1, 'red-top': i == 1, 'red-right': ci == selected.session_box_width, 'red-bottom': i == selected.session_box_height}" class="clip-box">
+					<select name="select" [(ngModel)] = "selected.session_box_clips[i-1][ci-1]" (change)="onChangeName()">
+						<option  *ngFor="let controller_input of selectControllerButtonInput"  value="{{controller_input.id}}" >{{controller_input.name}}</option>
+						option
+					</select>
+				</td>
+				<!-- add a scene on the end -->
+				<td class="scene-launch">
+					<select name="select" [(ngModel)] = "selected.session_box_scenes[(i-1)]" (blur)="onChangeName()" (change)="onChangeName()">
+						<option  *ngFor="let controller_input of selectControllerButtonInput"  value="{{controller_input.id}}" >{{controller_input.name}}</option>
+						option
+					</select>
+				</td>
+			</ng-container>
+		</tr>
+		<!-- add stop tracks and stop all -->
+		<tr class="stop-track">
+			<td class="stop-track" *ngFor="let i of selected.session_box_width | toArray">
+				Stop Track
+				<select name="select" [(ngModel)] = "selected.session_box_stops[(i-1)]" (blur)="onChangeName()" (change)="onChangeName()">
+					<option  *ngFor="let controller_input of selectControllerInput"  value="{{controller_input.id}}" >{{controller_input.name}}</option>
+					option
+				</select>
+			</td>
+			<td class="stop-all">
+				Stop all
+				<select name="select" [(ngModel)] = "this.selected.session_box_stop_all" (blur)="onChangeName()" (change)="onChangeName()">
+					<option  *ngFor="let controller_input of selectControllerInput"  value="{{controller_input.id}}" >{{controller_input.name}}</option>
+					option
+				</select>		
+			</td>
+		</tr>
+
+		</tbody>
+	</table>
+
+</div>

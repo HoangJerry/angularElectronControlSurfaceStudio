@@ -1,0 +1,98 @@
+.container-block{
+  padding: 25px;
+  border-bottom: 1px #464646 solid;
+  label{
+    width: 150px;
+    font-weight: 800;
+    display: inline-block;
+  }
+
+  input, select, select:focus {
+    width: 200px;
+    display: inline-block;
+    height: 25px;
+      border: none;
+      color: #fff;
+      outline: none ;
+  }
+
+  input{
+    background-color: #fff;
+    color: #000;
+  }
+
+  .radio{
+    input{
+      width: 30px;
+      height: 15px;
+    }
+  }
+
+  .control{
+    input {
+      width: 60px;
+      text-align: center;
+    }
+  }
+}
+
+// session-box
+$gray-base:              #000 !default;
+$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:              #303030 !default;   // #333
+$gray:                   #464545 !default;
+$gray-light:             #999 !default;   // #999
+$gray-lighter:           #EBEBEB !default; // #eee
+$box-red:                #f00;
+
+.session-box {
+  border: 2px solid $gray-dark;
+  max-width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  top: 10px;
+  text-align: center;
+
+  td {
+    border: 1px solid $gray-dark;
+    width: 94px;
+    height: 45px;
+
+    select {
+      width: 100px;
+    }
+
+    input {
+      text-align: center;
+      width: 100%;
+      background-color: $gray-darker;
+      border-color: $gray-darker;
+      color: #fff;
+    }
+  }
+
+  .box-header {
+    td {
+      background-color: $gray-light !important;
+      border-bottom-width: 1px;
+      color: $gray-base;
+    }
+  }
+
+  .stop-track {
+    background-color: #404040;
+  }
+
+  .red-left {
+    border-left: 2px solid $box-red !important;
+  }
+  .red-right {
+    border-right: 2px solid $box-red !important;
+  }
+  .red-top {
+    border-top: 2px solid $box-red !important;
+  }
+  .red-bottom {
+    border-bottom: 2px solid $box-red !important;
+  }
+}

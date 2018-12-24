@@ -1,0 +1,75 @@
+{  
+   "mode":[  
+      "Mode Selector",
+      "Reaction",
+      "Session Box",
+      "Session Box Navigation",
+      "Show/Hide Views",
+      "Drumrack",
+      "Highlight Navigation",
+      "Scene Launch",
+      "Tap Tempo",
+      "Tempo MI Song Tempo Nudge up MI Song tempo Nudge down",
+      "Metronome",
+      "Quantization Menu",
+      "Play",
+      "Stop",
+      "Arrangement Record MI Midi Arrangement Overdub",
+      "Automation Arm",
+      "Re-enable Automation",
+      "Session Record MI",
+      "New",
+      "Redo",
+      "Undo",
+      "Arrangement Loop on/off",
+      "Arrangement Punch in",
+      "Arrangement Punch out",
+      "Arrangement Locators",
+      {  
+         "Track":[  
+            "Volume",
+            "Pan",
+            "Mute",
+            "Solo",
+            "Arm",
+            "A/B Track Assign",
+            "Crossfader",
+            "Cue Volume",
+            "Device Navigation",
+            {  
+               "Device":[  
+                  "Parameters",
+                  "On/Off",
+                  "Parameter Banking",
+                  "Lock Device",
+                  "Select Device",
+                  "Preset Selector",
+                  "Drumpad Mutes",
+                  "Drumpad Solos",
+                  "Drumpad Deletes",
+                  "Drumpad duplicates",
+                  "Visible Drumpad Control",
+                  "Drumpad Selects"
+               ]
+            },
+            {  
+               "Clip":[  
+                  "Loop on/off",
+                  "Loop Start",
+                  "Loop End",
+                  "Create Clip",
+                  "Delete Clip",
+                  "Start Marker",
+                  "End Marker",
+                  "Stop Scrub",
+                  "Start Scrub",
+                  "Playing Position",
+                  "Clear all envelopes",
+                  "Grid Quantization",
+                  "Quantize Clip"
+               ]
+            }
+         ]
+      }
+   ]
+}

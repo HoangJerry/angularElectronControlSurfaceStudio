@@ -1,0 +1,18 @@
+<div class="midi-monitoring container">
+  <label class="bold">MIDI Monitoring 
+  <input type="button" class="midAction" [(ngModel)]="btnText" [ngStyle]="isChecked && {'background-color':'#69ea69'} || {'background-color': '#f40a03'}" (click)="check($event)"></label> <br>
+  <label class="bold">Connected MIDI Inputs</label>
+  <div *ngFor="let x of inputs" style="margin-left:5px;">{{ x }}</div>
+  <hr>
+  <label class="bold">Latest MIDI Message received</label>
+ 
+    <ul class="nav nav-pills">
+      <li>Channel: {{ channel }}</li>
+      <li>Type: {{ type }}</li>
+      <li>Value: {{ value }}</li>
+      <li>Velocity: {{ velocity }}</li>
+      
+    </ul>
+  
+  
+</div>

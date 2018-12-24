@@ -1,0 +1,14 @@
+.main-background{
+	background-color: #3498db;
+	width: 46px;
+	height: 100vh;
+	.item-icon{
+		color: #d7f0ff;
+		background-color: #3498db;
+		text-align: center;
+    	padding: 10px;
+	}
+	.active{
+    		background-color: #82d0fd !important;
+    }
+}

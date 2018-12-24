@@ -1,0 +1,9 @@
+<div class="container-block">
+	<div class="container-drumracks">
+		<div class="drumrack" *ngFor="let val of 16 | toArray">
+			<select style="width: 100%; height: 30px;" name="select" [(ngModel)] = "selected.drumrack[val-1]" (blur)="onChangeName()" (change)="onChangeName()">
+				<option  *ngFor="let controller of selectControllerButtonInput"  value="{{controller.id}}" >{{controller.name}}</option>
+			</select>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-block">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Name</label>
+		<select name="select" [(ngModel)] = "selected.name" (blur)="onChangeName()">
+			<option  *ngFor="let key_name of crossfader_names_show"  value="{{key_name.name}}" >{{key_name.name}}</option>
+			option
+		</select>
+	</div>
+</div>
+<div class="container-block crossfader">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Width</label>
+		<input type="number" name="name" value="" class="d-inline-block" [(ngModel)]="selected.width" (input)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Height</label>
+		<input type="number" name="name" value="" class="d-inline-block" [(ngModel)]="selected.height" (input)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Top</label>
+		<input type="number" name="name" value="" class="d-inline-block" [(ngModel)]="selected.top" (input)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Left</label>
+		<input type="number" name="name" value="" class="d-inline-block" [(ngModel)]="selected.left" (input)="onChangeName()" (click)="onClickInput()">
+	</div>
+</div>

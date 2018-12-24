@@ -1,0 +1,30 @@
+<div class="container-block">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Name</label>
+		<select name="select" [(ngModel)] = "selected.name" (blur)="onChangeName()">
+			<option  *ngFor="let container_name of container_names_show"  value="{{container_name.name}}" >{{container_name.name}}</option>
+			option
+		</select>
+	</div>
+</div>
+<div class="container-block containers">
+	<div class="">
+		<label>Width </label>
+		<input type="number" name="control_container_width" value="" class="d-inline-block" [(ngModel)]="selected.control_container_width" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Height </label>
+		<input type="number" name="control_container_height" value="" class="d-inline-block" [(ngModel)]="selected.control_container_height" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Left </label>
+		<input type="number" name="control_container_left" value="" class="d-inline-block" [(ngModel)]="selected.control_container_left" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Top </label>
+		<input type="number" name="control_container_top" value="" class="d-inline-block" [(ngModel)]="selected.control_container_top" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+</div>

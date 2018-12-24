@@ -1,0 +1,241 @@
+.container-block{
+	padding: 25px;
+	border-bottom: 1px #464646 solid;
+	label{
+		width: 150px;
+		font-weight: 800;
+		display: inline-block;
+	}
+
+	input, select, select:focus {
+		width: 200px;
+		display: inline-block;
+		height: 25px;
+	    border: none;
+	    color: #fff;
+	    outline: none ;
+	}
+
+	input{
+		background-color: #fff;
+		color: #000;
+	}
+
+	.radio{
+		input{
+			width: 30px;
+			height: 15px;
+		}
+	}
+
+	.control{
+		input {
+			width: 60px;
+			text-align: center;
+		}
+	}
+
+	input[type='range'] {
+		overflow: hidden;
+		-webkit-appearance: none;
+		background-color: #fff;
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+		height: 10px;
+		-webkit-appearance: none;
+		color: #87c2e7;
+		margin-top: -1px;
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+		width: 10px;
+		-webkit-appearance: none;
+		height: 10px;
+		cursor: ew-resize;
+		background: #87c2e7;
+		box-shadow: -100px 0 0 100px #87c2e7;
+    }
+
+	.min-max-value {
+		top:0px; 
+		left:50%; 
+		margin-left:-5px;
+		color:black;
+		// pointer-events: none;
+	}
+}
+
+.mapping-type-settings {
+	
+	input, select, select:focus {
+		height: 100%;
+		width: 100%;
+	}
+
+	.setting-row {
+		margin-bottom: 15px;
+		margin-left: 0;
+		margin-right: 0;
+		min-height: 36px;
+
+		.setting-item {
+			padding: 0;
+
+			&.padding-left {
+				padding-left: 15px;
+			}
+		}
+
+		.check {
+
+		}
+
+    .padding-right {
+      padding-right: 15px;
+    }
+
+		.name {
+			padding-right: 15px;
+
+			div {
+				background-color: #575757;
+				border: 1px solid #000;
+				padding: 5px 10px;
+			}
+		} 
+
+		.operator {
+			padding-right: 15px;
+		}
+	}
+
+}
+
+.device-settings {
+
+	.device-selector {
+		input {
+			padding-left: 10px;
+		}
+	}
+}
+
+  .chain-targeting {
+    background-color: #484848;
+    margin-bottom: 20px;
+    padding: 15px;
+
+    .targets {
+      margin-bottom: 5px;
+      margin-top: 8px;
+    }
+
+    .level {
+      display: block;
+      margin-bottom: 5px;
+      overflow: hidden;
+
+      .device,
+      .chain {
+        background-color: #575757;
+        border: 1px solid #000;
+        display: inline-block;
+        float: left;
+        margin-right: 5px;
+        padding: 3px 37px;
+      }
+
+      .device-input, 
+      .chain-input {
+        border: 1px solid #000;
+        float: left;
+        margin-right: 5px;
+        width: 30px;
+        height: 30px;
+        position: relative;
+        top: 1px;
+
+        input {
+          text-align: center;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+    .plus, .minus {
+      background-color: #575757;
+      border: 1px solid #000;
+      cursor: pointer;
+      display: inline-block;
+      padding: 0px 14px;
+      margin-right: 5px;
+    }
+  }
+
+
+
+// session-box
+$gray-base:              #000 !default;
+$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:              #303030 !default;   // #333
+$gray:                   #464545 !default;
+$gray-light:             #999 !default;   // #999
+$gray-lighter:           #EBEBEB !default; // #eee
+$box-red:                #f00;
+
+.session-box {
+	border: 2px solid $gray-dark;
+  max-width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  top: 10px;
+  text-align: center;
+
+  td {
+    border: 1px solid $gray-dark;
+    width: 94px;
+    height: 45px;
+
+    select {
+      width: 100px;
+    }
+
+    input {
+      text-align: center;
+      width: 100%;
+      background-color: $gray-darker;
+      border-color: $gray-darker;
+      color: #fff;
+    }
+  }
+
+  .box-header {
+    td {
+      background-color: $gray-light !important;
+      border-bottom-width: 1px;
+      color: $gray-base;
+    }
+  }
+
+  .stop-track {
+    background-color: #404040;
+  }
+
+	.red-left {
+	  border-left: 2px solid $box-red !important;
+	}
+	.red-right {
+	  border-right: 2px solid $box-red !important;
+	}
+	.red-top {
+	  border-top: 2px solid $box-red !important;
+	}
+	.red-bottom {
+	  border-bottom: 2px solid $box-red !important;
+	}
+}
+
+
+

@@ -1,0 +1,36 @@
+.container {
+	background:#3f3f3f;
+	color:#ffffff;
+	padding:20px;
+	width:820px;
+}
+
+.bold {
+	font-weight: bold;	
+}
+
+hr {
+  background-color:#585858;
+}
+
+td {
+  padding: 0px 19px 10px 0px;
+}
+
+label {
+  margin:6px 3px;
+}
+
+.content-div {
+	overflow:scroll;
+}
+.error{
+	border : 1px solid #ff2626;
+	color:#ff2626;
+	padding:10px;
+	
+}
+select{
+	background : #575757 !important;
+	color: #fff;
+}

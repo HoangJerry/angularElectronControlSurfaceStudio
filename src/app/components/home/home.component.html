@@ -1,0 +1,59 @@
+<div class="container-apps">
+<!--   <header>
+    <strong>Remotify</strong>
+    
+    <nav>
+      <ul>
+        <li><img src="./assets/btn-min.svg" id="min" (click)="minimizeWindow()"></li>
+        <li><img src="./assets/btn-close.svg" (click)="closeWindow()"></li>
+      </ul>
+    </nav>
+  </header> -->
+  <main>
+    <div class="position-absolute" style="z-index: 1000; width: 100vw">
+      <app-header></app-header>
+    </div>
+    <div class="container-main">
+      <app-switch-manager [selected]="switchManager" (changeSelected)="onChangeSelected($event)"> </app-switch-manager>
+
+      <div class="container-manager">
+        <app-controller-manager *ngIf="switchManager=='controllerManager'"></app-controller-manager>
+
+        <app-script-manager *ngIf="switchManager=='scriptManager'"></app-script-manager>
+
+      </div>
+
+      <div class="container-midi" *ngIf="importManager==null" >
+        <app-midi-controller class="d-inline-block" style="height: 100vh; overflow-x: scroll;" [ngStyle]="{'width':showHideControllerMapping ? 'calc(100vw - 410px - 46px - 380px)':'calc(100vw - 410px - 46px)'}"></app-midi-controller>
+
+        <!-- <app-controller-mappings style="position: absolute; z-index:10" [ngStyle]="{'right':showHideControllerMapping ? '0':'-380px'}" (click)="showHideControllerMapping = !showHideControllerMapping"></app-controller-mappings> -->
+
+      </div>
+      <div class="container-midi"  *ngIf="importManager=='script-import'">
+        <app-script-import></app-script-import>
+      </div>
+      <div class="container-midi"  *ngIf="importManager=='controller-import'">
+        <app-controller-import></app-controller-import>
+      </div>
+
+    </div>
+    <!-- <form>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Name:</label>
+        <div class="input-group mb-3">
+          <input name="name" type="text" class="form-control" id="disabledInput"  [ngModel] = "name.slice(name.lastIndexOf('/')+1,name.lenght)" [ngModelOptions] = "{standalone: true}" >
+          <a href="#" class="input-group-append" (click)="openFile();" >
+            <span class="input-group-text" id="basic-addon2">Open</span>
+          </a>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Text:</label>
+        <input type="text" class="form-control" [(ngModel)] = "text" name ="text">
+      </div>
+      <button type="button" class="btn btn-info" (click)="writeFile()">Write</button>
+      <button type="button" class="btn btn-info" (click)="readFile()">Read</button>
+      <button type="button" class="btn btn-info" (click)="deleteFile()">Delete</button>
+    </form> -->
+  </main>
+</div>

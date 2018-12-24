@@ -1,0 +1,35 @@
+.container-block{
+	padding: 25px;
+	border-bottom: 1px #464646 solid;
+	label{
+		width: 150px;
+		display: inline-block;
+		font-weight: 800;
+	}
+
+	input, select, select:focus {
+		width: 200px;
+		display: inline-block;
+		height: 25px;
+	    border: none;
+	    color: #fff;
+	    outline: none ;
+	    text-align: center;
+	}
+
+	input{
+		background-color: #fff;
+		color: #000;
+	}
+}
+.pads{
+	input {
+		width: 60px;
+		background: #545454;
+		color:#fff;
+		border: 1px solid black;
+	}
+	select, select:focus{
+		width: 120px;
+	}
+}

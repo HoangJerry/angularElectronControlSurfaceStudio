@@ -1,0 +1,12 @@
+<div class="container-block">
+	<div class="">
+		<select style="width: 120px; margin-right: 30px;" name="select" [(ngModel)] = "selected.mode_select_type" (change)="onChangeName()">
+			<option  *ngFor="let val of selectModeType"  value="{{val}}" >{{val}}</option>
+			option
+		</select>
+		<select *ngIf="selected.mode_select_type=='Select Mode'" name="select" [(ngModel)] = "selected.func_arg" (change)="onChangeName()">
+			<option  *ngFor="let val of scripts"  value="{{val.id}}" >{{val.name}}</option>
+			option
+		</select>
+	</div>
+</div>

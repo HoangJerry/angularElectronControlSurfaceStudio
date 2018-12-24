@@ -1,0 +1,21 @@
+<div class="header container-fluid">
+	<div class="logo">
+		<h4>CONTROL SURFACE STUDIO</h4>
+	</div>
+	<div class="icon-center">
+		<ul class="nav nav-pills">
+			<li><img src="assets/images/settings.svg"/><i [hidden]="fileService.isError==false" class="fa fa-circle"  aria-hidden="true"></i><div class="dropdown settings"><app-settings></app-settings></div></li>
+			<li class="d-none"><img src="assets/images/undo.svg"/><div class="dropdown"></div></li>
+			<li class="d-none"><img src="assets/images/redo.svg"/><div class="dropdown"></div></li>
+			<li><img src="assets/images/error.svg"/><i *ngIf="fileService.isErrorLog==true" class="fa fa-circle"  aria-hidden="true"></i><div class="dropdown"><app-error-log></app-error-log></div></li>
+			<li><img src="assets/images/midi-icon.svg"/><i *ngIf="fileService.isMidi==false" class="fa fa-circle"  aria-hidden="true"></i><i *ngIf="fileService.isMidi==true" class="fa fa-circle green"  aria-hidden="true"></i><div class="dropdown col-md-12"><app-midi-monitor></app-midi-monitor></div></li>
+			<li class="d-none"><img src="assets/images/notifications.svg"/><div class="dropdown"><app-notifications></app-notifications></div></li>
+			<li class="logout"><a href="#" (click)="logout()">logout</a></li>
+		</ul>
+
+	</div>
+	<div class="has-role">
+		<a *ngIf="fileService.purchasedApp==false;" (click)="goTo()"><img class="pro-not-active" title="activate pro" src="assets/images/pro-not-active.png"/></a>
+		<a *ngIf="fileService.purchasedApp==true;"><img class="pro-active" title="pro active" src="assets/images/pro-active.png"/></a>
+	</div>	
+</div>

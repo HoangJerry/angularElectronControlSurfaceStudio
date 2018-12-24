@@ -1,0 +1,136 @@
+<!-- <div class="container-block">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Name</label>
+		<input type="text" name="name" value="" class="d-inline-block" [(ngModel)]="selected.name" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+</div> -->
+<app-controller-container *ngIf="selected.type.type=='Container'" [selectedData]="selected" (changeSelected)="onChangeSelected($event)"></app-controller-container>
+<app-controller-knob *ngIf="selected.type.type=='Knob'" [selectedData]="selected" (changeSelected)="onChangeSelected($event)"></app-controller-knob>
+
+<div class="container-block" *ngIf="selected.type.type=='Encoder'">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Name</label>
+		<input type="text" name="name" value="" class="d-inline-block" [(ngModel)]="selected.name" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+</div>
+
+<div class="container-block" *ngIf="selected.type.type=='Pad'||selected.type.type=='Key'">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Name</label>{{selected.name}}
+	</div>
+</div>
+
+<app-controller-slider *ngIf="selected.type.type=='Slider'" [selectedData]="selected" (changeSelected)="onChangeSelected($event)"></app-controller-slider>
+
+<app-controller-crossfader *ngIf="selected.type.type=='Crossfader'" [selectedData]="selected" (changeSelected)="onChangeSelected($event)"></app-controller-crossfader>
+
+<app-controller-pads *ngIf="selected.type.type=='Pads'"  [selectedData]="selected" (changeSelected)="onChangeSelected($event)" (changeController)="onchangeController($event)"></app-controller-pads>
+
+<app-controller-keys *ngIf="selected.type.type=='Keys'"  [selectedData]="selected" (changeSelected)="onChangeSelected($event)" (changeController)="onchangeController($event)"></app-controller-keys>
+
+<app-controller-button *ngIf="selected.type.type=='Button'" [selectedData]="selected" (changeSelected)="onChangeSelected($event)"></app-controller-button>
+
+<!-- MIDI -->
+<div class="container-block" 
+*ngIf="selected.type.type=='Knob'||
+selected.type.type=='Encoder'||
+selected.type.type=='Slider'||
+selected.type.type=='Crossfader'||
+selected.type.type=='Button'||
+selected.type.type=='Pad'||
+selected.type.type=='Key'">
+	<div class="">
+		<label>MIDI Type <i class="fas fa-question-circle text-white"></i></label>
+		<select name="select" [(ngModel)] = "selected.MIDI_type" (blur)="onChangeName()">
+			<option  *ngFor="let type of selectMIDITypes"  value="{{type}}" >{{type}}</option>
+			option
+		</select>
+	</div>
+	<div class="">
+		<label>MIDI Channel <i class="fas fa-question-circle text-white"></i></label>
+		<select name="select" [(ngModel)] = "selected.MIDI_channel" (blur)="onChangeName()">
+			<option  *ngFor="let channel of selectMIDIChannels"  value="{{channel}}" >{{channel}}</option>
+			option
+		</select>
+	</div>
+	<div class="">
+		<label>MIDI Value <i class="fas fa-question-circle text-white"></i></label>
+		<select name="select" [(ngModel)] = "selected.MIDI_value" (blur)="onChangeName()">
+			<option  *ngFor="let value of selectMIDIValues"  value="{{value}}" >{{value}}</option>
+			option
+		</select>
+	</div>
+</div>
+
+<!-- Control TYPE -->
+<div class="container-block control-type" *ngIf="selected.type.type=='Knob'||selected.type.type=='Encoder'||selected.type.type=='Slider'||selected.type.type=='Crosstader'||selected.type.type=='Button'||selected.type.type=='Pad'||selected.type.type=='Key'">
+	<div class="">
+		<label>Control type</label>
+		<select name="select" [(ngModel)] = "selected.control_type" (change)="onChangeName()">
+			<option  *ngFor="let value of selectControlType"  value="{{value}}" >{{value}}</option>
+			option
+		</select>
+	</div>
+
+	<!-- Control type: On/Off -->
+	<div class="" *ngIf="selected.control_type=='On/Off'">
+		<div class="">
+			<label>On <i class="fas fa-question-circle text-white"></i></label>
+			<input type="text" name="control_type_on" value="" class="d-inline-block" [(ngModel)]="selected.control_type_on" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+		<div class="">
+			<label>Off <i class="fas fa-question-circle text-white"></i></label>
+			<input type="text" name="control_type_off" value="" class="d-inline-block" [(ngModel)]="selected.control_type_off" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+	</div>
+
+	<!-- Control type: Absolute -->
+	<div class="" *ngIf="selected.control_type=='Absolute'">
+		<div class="">
+			<label>First <i class="fas fa-question-circle text-white"></i></label>
+			<input type="text" name="control_type_first" value="" class="d-inline-block" [(ngModel)]="selected.control_type_first" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+		<div class="">
+			<label>Last <i class="fas fa-question-circle text-white"></i></label>
+			<input type="text" name="control_type_last" value="" class="d-inline-block" [(ngModel)]="selected.control_type_last" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+		<div class="radio">
+			<label>Invert<i class="fas fa-question-circle text-white"></i></label>
+			<input type="radio" name="control_type_last" value="On" class="d-inline-block" [(ngModel)]="selected.control_type_reverse_mode" (blur)="onChangeName()" (click)="onClickInput()">On
+			<input type="radio" name="control_type_last" value="Off" class="d-inline-block" [(ngModel)]="selected.control_type_reverse_mode" (blur)="onChangeName()" (click)="onClickInput()">Off
+		</div>
+		<div class="">
+			<label>Takeover Mode <i class="fas fa-question-circle text-white"></i></label>
+			<select name="select" [(ngModel)] = "selected.control_type_takeover_mode" (blur)="onChangeName()">
+				<option  *ngFor="let value of selectTakeoverMode"  value="{{value}}" >{{value}}</option>
+				option
+			</select>
+		</div>
+	</div>
+
+	<!-- Control type: Relative -->
+	<div class="" *ngIf="selected.control_type=='Relative'">
+		<div class="">
+			<label>Left <i class="fas fa-question-circle text-white"></i></label>
+			<input type="text" name="control_type_down" value="" class="d-inline-block" [(ngModel)]="selected.control_type_left" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+		<div class="">
+			<label>Right <i class="fas fa-question-circle text-white"></i></label>
+			<input type="text" name="control_type_up" value="" class="d-inline-block" [(ngModel)]="selected.control_type_right" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+		<div class="">
+			<label>Steps <i class="fas fa-question-circle text-white"></i></label>
+			<input type="text" name="control_type_steps" value="" class="d-inline-block" [(ngModel)]="selected.control_type_steps" (blur)="onChangeName()" (click)="onClickInput()">
+		</div>
+	</div>
+
+</div>

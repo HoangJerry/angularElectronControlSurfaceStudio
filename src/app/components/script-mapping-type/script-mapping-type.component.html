@@ -1,0 +1,482 @@
+<div class="container-block">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Name</label>
+		<input type="text" name="name" value="" class="d-inline-block" [(ngModel)]="selected.name" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Mode'">
+	<p>This is more addition for Mode</p>
+</div>
+<app-script-mode-selector *ngIf="selected.type.type=='Mode Selector'" [selectedData]="selected" (changeSelected)="onChangeName($event)"></app-script-mode-selector>
+<app-script-session-box *ngIf="selected.type.type=='Session Box'" [selectedData]="selected" [selectControllerInput]="selectControllerInput"[selectControllerButtonInput]="selectControllerButtonInput" (changeSelected)="onChangeName($event)"></app-script-session-box>
+<app-script-reaction *ngIf="selected.type.type=='Reaction'" [selectedData]="selected" [selectControllerInput]="controllersInput" (changeSelected)="onChangeName($event)"></app-script-reaction>
+<div class="container-block" *ngIf="selected.type.type=='Show/Hide Views'">
+	<p>This is more addition for Show/Hide Views</p>
+</div>
+<app-script-drumrack *ngIf="selected.type.type=='Drumrack'" [selectedData]="selected" [selectControllerButtonInput]="selectControllerButtonInput" (changeSelected)="onChangeName($event)"></app-script-drumrack>
+<div class="highlight-navigation-settings mapping-type-settings container-block" *ngIf="selected.type.type=='Highlight Navigation' || selected.type.type=='Session Box Navigation'">
+	<div class="setting-row row">
+		<div class="name col-sm-8 setting-item">
+			<div>Navigate</div>
+		</div>
+		<div class="option col-sm-4 setting-item">
+			<select name="select" [(ngModel)] = "selected.nav_tracks_or_scenes" (change)="onChangeName()">
+			<option  *ngFor="let val of selectTrackSceneNavType"  value="{{val}}" >{{val}}</option>
+			option
+			</select>
+		</div>
+	</div>
+	<div class="setting-row row">
+		<div class="col-sm-8 setting-item padding-right">
+			<select name="select" [(ngModel)] = "selected.highlight_navigation_type" (change)="onChangeName()">
+			<option  *ngFor="let val of selectHighlightNavType"  value="{{val}}" >{{val}}</option>
+			option
+			</select>
+		</div>
+		<div class="col-sm-4 setting-item">
+			<input *ngIf="selected.highlight_navigation_type=='Select track/scene number'" [(ngModel)] = "selected.highlight_number" type="text" maxlength="3">
+		</div>
+	</div>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Scene Launch'">
+	<p>This is more addition for Scene Launch</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Tap Tempo'">
+	<p>This is more addition for Tap Tempo</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Tempo'">
+	<div class="">
+		<label>Minimum</label>
+		<div class="d-inline-block position-relative">
+			<input class="form-control-range" type="range" value="90"  min="20" max="999" step="0.01" name="minimum" class="d-inline-block" [(ngModel)]="selected.minimum" (blur)="onChangeName()" (click)="onClickInput()">
+			<p class="position-absolute min-max-value" (dblclick)="dbclick='minimum'">{{selected.minimum | minMax : selected.type.type}}</p>
+			<input class="position-absolute" style="left: 0" step="0.01" *ngIf="dbclick=='minimum'" type="number" [(ngModel)]="selected.minimum" (blur)="dbclick=null; onChangeName()" (click)="onClickInput()" autofocus>
+		</div>
+	</div>
+	<div class="">
+		<label>Maximum</label>
+		<div class="d-inline-block position-relative">
+			<input class="form-control-range" type="range" value="180"  min="20" max="999" step="0.01" name="maximum" class="d-inline-block" [(ngModel)]="selected.maximum" (blur)="onChangeName()" (click)="onClickInput()">
+			<p class="position-absolute min-max-value" (dblclick)="dbclick='maximum'">{{selected.maximum | minMax : selected.type.type}}</p>
+			<input class="position-absolute" style="left: 0" step="0.01" *ngIf="dbclick=='maximum'" type="number" [(ngModel)]="selected.maximum" (blur)="dbclick=null; onChangeName()" (click)="onClickInput()" autofocus>
+		</div>
+	</div>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Song Tempo Nudge up'">
+	<p>This is more addition for Song Tempo Nudge up</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Song tempo Nudge down'">
+	<p>This is more addition for Song tempo Nudge down</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Metronome'">
+	<p>This is more addition for Metronome</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Quantization Menu'">
+	<p>This is more addition for Quantization Menu</p>
+</div>
+<!-- <div class="play container-block" *ngIf="selected.type.type=='Play'">
+	<p>This is more addition for Play</p>
+</div> -->
+<!-- <div class="container-block" *ngIf="selected.type.type=='Stop'">
+	<p>This is more addition for Stop</p>
+</div> -->
+<div class="d-none container-block" *ngIf="selected.type.type=='Arrangement Record'">
+	<p>This is more addition for Arrangement Record</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Midi Arrangement Overdub'">
+	<p>This is more addition for Midi Arrangement Overdub</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Automation Arm'">
+	<p>This is more addition for Automation Arm</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Re-enable Automation'">
+	<p>This is more addition for Re-enable Automation</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Session Record'">
+	<p>This is more addition for Session Record</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='New'">
+	<p>This is more addition for New</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Redo'">
+	<p>This is more addition for Redo</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Undo'">
+	<p>This is more addition for Undo</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Arrangement Loop on/off'">
+	<p>This is more addition for Arrangement Loop on/off</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Arrangement Punch in'">
+	<p>This is more addition for Arrangement Punch in</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Arrangement Punch out'">
+	<p>This is more addition for Arrangement Punch out</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Arrangement Locators'">
+	<p>This is more addition for Arrangement Locators</p>
+</div>
+<div class="track-settings mapping-type-settings container-block" *ngIf="selected.type.type=='Track'">
+	
+	<div class="track-type setting-row row">
+		<div class="name col-sm-8 setting-item"><div>Type</div></div>
+		<div class="option col-sm-4 setting-item">
+			<select [(ngModel)] = "selected.track_type" name="track-type-option-select" class="track-type-option" (change)="onChangeName()" value="selectTrackType[0]">		
+				<option  *ngFor="let opt of selectTrackType"  value="{{opt}}" >{{opt}}</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="track-number setting-row row" [ngClass]="addDeactivateClass('track-number')"> 
+																			
+		<div class="name col-sm-8 setting-item"><div>Number</div></div>
+		<div class="option col-sm-4 setting-item">
+			<select [(ngModel)] = "selected.track_number" name="track-type-option-select" class="track-number-option" (change)="onChangeName()">		
+				<option  *ngFor="let opt of selectTrackNumber"  value="{{opt}}" >{{opt}}</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="track-include-folded setting-row row" [ngClass]="addDeactivateClass('track-include-folded')">
+		<!-- <div class="check col-sm-1 setting-item"><input type="checkbox" name="visible-only"></div> -->
+		<div class="name col-sm-8 setting-item"><div>Include folded tracks</div></div>
+		<!-- <div class="operator col-sm-2 setting-item">
+			<select class="track-include-folded-operator">
+				<option selected value="equals">=</option>
+			</select>
+		</div> -->
+		<div class="option col-sm-4 col-sm-2 setting-item">
+			<select [(ngModel)] = "selected.track_include_folded" name="track-include-folded-option-select" class="track-include-folded-option" (change)="onChangeName()">		
+				<option  *ngFor="let opt of selectYesNo"  value={{opt.value}} >{{opt.display}}</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="track-relative-to-session-box setting-row row" [ngClass]="addDeactivateClass('track-relative-to-session-box')">
+
+		<div class="name col-sm-8 setting-item"><div>Relative to session box</div></div>
+
+		<div class="option col-sm-4 col-sm-2 setting-item">
+			<select [(ngModel)] = "selected.track_relative_to_session" name="track_relative_to_session-select" class="track_relative_to_session-option" (change)="onChangeName()">		
+				<option  *ngFor="let opt of selectYesNo"  value={{opt.value}} >{{opt.display}}</option>
+			</select>
+		</div>
+	</div>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Volume'">
+	<div class="">
+		<label>Minimum</label>
+		<div class="d-inline-block position-relative">
+			<input class="form-control-range" type="range" value="90"  min="-69" max="6" step="0.001" name="minimum" class="d-inline-block" [(ngModel)]="selected.minimum" (blur)="onChangeName()" (click)="onClickInput()">
+			<p class="position-absolute min-max-value" (dblclick)="dbclick='minimum'">{{selected.minimum | minMax : selected.type.type}}</p>
+			<input class="position-absolute" style="left: 0" step="0.1" *ngIf="dbclick=='minimum'" type="number" [(ngModel)]="selected.minimum" (blur)="dbclick=null; onChangeName()" (click)="onClickInput()" autofocus>
+		</div>
+	</div>
+	<div class="">
+		<label>Maximum</label>
+		<div class="d-inline-block position-relative">
+			<input class="form-control-range" type="range" value="180"  min="-69" max="6" step="0.001" name="maximum" class="d-inline-block" [(ngModel)]="selected.maximum" (blur)="onChangeName()" (click)="onClickInput()">
+			<p class="position-absolute min-max-value" (dblclick)="dbclick='maximum'">{{selected.maximum | minMax : selected.type.type}}</p>
+			<input class="position-absolute" style="left: 0" step="0.1" *ngIf="dbclick=='maximum'" type="number" [(ngModel)]="selected.maximum" (blur)="dbclick=null; onChangeName()" (click)="onClickInput()" autofocus>
+		</div>
+	</div>
+</div>
+
+<div class="container-block" *ngIf="selected.type.type=='Pan'">
+	<div class="">
+		<label>Minimum</label>
+		<div class="d-inline-block position-relative">
+			<input class="form-control-range" type="range" value="90"  min="-50" max="50" step="1" name="minimum" class="d-inline-block" [(ngModel)]="selected.minimum" (blur)="onChangeName()" (click)="onClickInput()">
+			<p class="position-absolute min-max-value" (dblclick)="dbclick='minimum'">{{selected.minimum | minMax : selected.type.type}}</p>
+			<input class="position-absolute" style="left: 0" step="0.1" *ngIf="dbclick=='minimum'" type="number" [(ngModel)]="selected.minimum" (blur)="dbclick=null; onChangeName()" (click)="onClickInput()" autofocus>
+		</div>
+	</div>
+	<div class="">
+		<label>Maximum</label>
+		<div class="d-inline-block position-relative">
+			<input class="form-control-range" type="range" value="180"  min="-50" max="50" step="1" name="maximum" class="d-inline-block" [(ngModel)]="selected.maximum" (blur)="onChangeName()" (click)="onClickInput()">
+			<p class="position-absolute min-max-value" (dblclick)="dbclick='maximum'">{{selected.maximum | minMax : selected.type.type}}</p>
+			<input class="position-absolute" style="left: 0" step="0.1" *ngIf="dbclick=='maximum'" type="number" [(ngModel)]="selected.maximum" (blur)="dbclick=null; onChangeName()" (click)="onClickInput()" autofocus>
+		</div>
+	</div>
+</div>
+
+<div class="d-none container-block" *ngIf="selected.type.type=='Mute'">
+	<p>This is more addition for Mute</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Solo'">
+	<p>This is more addition for Solo</p>
+</div>
+<div class="d-none container-block" *ngIf="selected.type.type=='Arm'">
+	<p>This is more addition for Arm</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='A/B Track Assign'">
+	<p>This is more addition for A/B Track Assign</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Crossfader'">
+	<p>This is more addition for Crossfader</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Cue Volume'">
+	<p>This is more addition for Cue Volume</p>
+</div>
+<div class="d-sm-none container-block" *ngIf="selected.type.type=='Device Navigation'">
+	<p>This is more addition for Device Navigation</p>
+</div>
+<div class="device-settings  mapping-type-settings container-block" *ngIf="selected.type.type=='Device'">
+	<div class="chain-targeting" [ngClass]="{'deactivated': selected.device_selector === 'selected'}">
+		<div><span class="title">Chain Targeting </span> <i class="fas fa-question-circle text-white"></i></div> 
+		<div class="targets">
+			<div *ngFor="let level of selected.device_selector_chain_targeting; index as i" class="level">
+				<div class="device">Device</div>
+				<div class="device-input">
+					<input type="number" min="1" maxlength="3" 
+					[(ngModel)]="this.selected.device_selector_chain_targeting[i].device"
+					value={{this.selected.device_selector_chain_targeting[i].device}}
+					(change)="onChangeName()">
+				</div>
+				<div class="chain">Chain</div>
+				<div class="chain-input">
+					<input type="number" min="1" maxlength="3" 
+					[(ngModel)]="this.selected.device_selector_chain_targeting[i].chain"
+					(change)="onChangeName()">
+				</div>
+			</div>
+		</div>
+		<div class="plus" (click)="addLevel()">+</div>
+		<div class="minus" (click)="removeLevel()">-</div>
+	</div>
+
+	<div>
+		<h5>Device Selector</h5>
+		<div class="device-selector setting-row row">
+
+			<div class="option setting-item col-sm-6">
+				<select [(ngModel)] = "selected.device_selector" name="device_selector-select" class="device_selector-option" (change)="onChangeName()">		
+				<option  *ngFor="let opt of deviceSelector"  value={{opt}} >{{opt}}</option>
+			</select>
+		</div>
+
+		<div class="text-input setting-item col-sm-6 padding-left last" [ngClass]="{'deactivated': selected.device_selector === 'selected'}">
+			<input [(ngModel)] = "selected.device_selector_input" type="number" name="" (change)="onChangeName()">
+		</div>
+
+		<div></div>
+		
+		</div>
+	</div>	
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Clip'">
+	<p>This is more addition for Clip</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Parameter Banking'">
+	<div class="">
+		<select name="select" style="margin-right: 30px;" [(ngModel)] = "selected.parameter_banking_type" (change)="onChangeName()">
+			<option  *ngFor="let val of selectbankingType"  value="{{val}}" >{{val}}</option>
+		</select>
+		<input *ngIf="selected.parameter_banking_type=='Select Bank Number'" style="width: 120px;" [(ngModel)] = "selected.banking_number" type="text" maxlength="3">
+	</div>
+</div>
+<!-- <div class="container-block" *ngIf="selected.type.type=='On/Off'">
+	<p>This is more addition for On/Off</p>
+</div> -->
+<app-script-parameter-bank *ngIf="selected.type.type=='Parameter Bank'||selected.type.type=='Sends'||selected.type.type=='Reactions'" [selectedData]="selected" (changeScript)="onChangeScript($event)" (changeSelected)="onChangeName($event)">
+</app-script-parameter-bank>	
+<app-script-parameter *ngIf="selected.type.type=='Parameter'||selected.type.type=='Send'" [selectedData]="selected" (changeSelected)="onChangeName($event)"></app-script-parameter>
+
+<div class="container-block" *ngIf="selected.type.type=='Lock Device'">
+	<p>This is more addition for Lock Device</p>
+</div>
+<div class="d-sm-none container-block" *ngIf="selected.type.type=='Select Device'">
+	<p>This is more addition for Select Device</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Preset Selector'">
+	<p>This is more addition for Preset Selector</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Drumpad Mutes'">
+	<p>This is more addition for Drumpad Mutes</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Drumpad Solos'">
+	<p>This is more addition for Drumpad Solos</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Drumpad Deletes'">
+	<p>This is more addition for Drumpad Deletes</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Drumpad duplicates'">
+	<p>This is more addition for Drumpad duplicates</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Visible Drumpad Control'">
+	<p>This is more addition for Visible Drumpad Control</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Drumpad Selects'">
+	<p>This is more addition for Drumpad Selects</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Loop on/off'">
+	<p>This is more addition for Loop on/off</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Loop Start'">
+	<p>This is more addition for Loop Start</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Loop End'">
+	<p>This is more addition for Loop End</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Create Clip'">
+	<p>This is more addition for Create Clip</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Delete Clip'">
+	<p>This is more addition for Delete Clip</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Start Marker'">
+	<p>This is more addition for Start Marker</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='End Marker'">
+	<p>This is more addition for End Marker</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Stop Scrub'">
+	<p>This is more addition for Stop Scrub</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Start Scrub'">
+	<p>This is more addition for Start Scrub</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Playing Position'">
+	<p>This is more addition for Playing Position</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Clear all envelopes'">
+	<p>This is more addition for Clear all envelopes</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Grid Quantization'">
+	<p>This is more addition for Grid Quantization</p>
+</div>
+<div class="container-block" *ngIf="selected.type.type=='Quantize Clip'">
+	<p>This is more addition for Quantize Clip</p>
+</div>
+
+<div *ngIf="selected.type.type=='Volume' || 
+	selected.type.type=='Pan'||
+	selected.type.type=='Tempo'"> 
+	<div class="container-block">
+		<label>Snapping <i class="fas fa-question-circle text-white"></i></label> 
+		<select name="select" [(ngModel)] = "selected.snap_to" (blur)="onChangeName()" (change)="onChangeName()">
+			<option  *ngFor="let onOff of selectOnOff"  value="{{onOff.value}}" >{{onOff.display}}</option>
+		</select>
+	</div>
+</div>
+
+<div *ngIf="selected.type.type!='Script'&&
+selected.type.type!='Mode'&&
+selected.type.type!='Reactions'&&
+selected.type.type!='Reaction'&&
+selected.type.type!='Session Box'&&
+selected.type.type!='Drumrack'&&
+selected.type.type!='Track'&&
+selected.type.type!='Device'&&
+selected.type.type!='Parameter Bank'&&
+selected.type.type!='Sends'&&
+selected.type.type!='Drumpad Mutes'&&
+selected.type.type!='Drumpad Solos'&&
+selected.type.type!='Drumpad Deletes'&&
+selected.type.type!='Drumpad Duplicates'&&
+selected.type.type!='Drumpad Selects'&&
+selected.type.type!='Clip'">
+	<div class="container-block" *ngIf="controllersInput!=undefined">
+		<label>Controller Input <i class="fas fa-question-circle text-white"></i></label>
+		<select name="select" [(ngModel)] = "selected.controller_input_id" (blur)="onChangeName()" (change)="onChangeName()">
+			<option  *ngFor="let controller_input of selectControllerInput"  value="{{controller_input.id}}" >{{controller_input.name}}</option>
+			option
+		</select>
+	</div>
+
+	<div class="container-block" *ngIf="selected.controller_input_id&&controllersInput!=undefined">
+		<div class="radio">
+			<label>Control <i class="fas fa-question-circle text-white"></i></label>
+			<input type="radio" name="control" value="default" class="d-inline-block" [(ngModel)]="selected.control" (click)="onChangeName()">Default
+			<input type="radio" name="control" value="custom" class="d-inline-block"  [(ngModel)]="selected.control"(click)="onChangeName()">Custom
+		</div>
+		<div *ngIf="selected.control=='custom'" class="control">
+			<div>
+				<label>Control type <i class="fas fa-question-circle text-white"></i></label>
+				<select name="select" [(ngModel)] = "selected.control_type" (blur)="onChangeName()">
+					<option  *ngFor="let value of selectControlType"  value="{{value}}" >{{value}}</option>
+					option
+				</select>
+			</div>
+			<!-- Control type: On/Off -->
+			<div class="" *ngIf="selected.control_type=='On/Off'">
+				<div class="">
+					<label>On <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_on" value="" class="d-inline-block" [(ngModel)]="selected.control_type_on" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+				<div class="">
+					<label>Off <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_off" value="" class="d-inline-block" [(ngModel)]="selected.control_type_off" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+			</div>
+
+			<!-- Control type: Absolute -->
+			<div class="" *ngIf="selected.control_type=='Absolute'">
+				<div class="">
+					<label>First <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_first" value="" class="d-inline-block" [(ngModel)]="selected.control_type_first" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+				<div class="">
+					<label>Last <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type	_last" value="" class="d-inline-block" [(ngModel)]="selected.control_type_last" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+				<div class="radio">
+					<label>Invert <i class="fas fa-question-circle text-white"></i></label>
+					<input type="radio" name="control_type_last" value="True" class="d-inline-block" [(ngModel)]="selected.control_type_reverse_mode" (blur)="onChangeName()" (click)="onClickInput()">On
+					<input type="radio" name="control_type_last" value="False" class="d-inline-block" [(ngModel)]="selected.control_type_reverse_mode" (blur)="onChangeName()" (click)="onClickInput()">Off
+				</div>
+				<div class="">
+					<label>Takeover Mode <i class="fas fa-question-circle text-white"></i></label>
+					<select name="select" [(ngModel)] = "selected.control_type_takeover_mode" (blur)="onChangeName()">
+						<option  *ngFor="let value of selectTakeoverMode"  value="{{value}}" >{{value}}</option>
+						option
+					</select>
+				</div>
+			</div>
+
+			<!-- Control type: Relative -->
+			<div class="" *ngIf="selected.control_type=='Relative'">
+				<div class="">
+					<label>Left <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_left" value="" class="d-inline-block" [(ngModel)]="selected.control_type_left" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+				<div class="">
+					<label>Right <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_right" value="" class="d-inline-block" [(ngModel)]="selected.control_type_right" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+				<div class="">
+					<label>Steps <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_steps" value="" class="d-inline-block" [(ngModel)]="selected.control_type_steps" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+			</div>
+			<!-- Control type: Increment -->
+			<div class="" *ngIf="selected.control_type=='Increment'">
+				<div class="">
+					<label>On <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_on" value="" class="d-inline-block" [(ngModel)]="selected.control_type_on" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+				<div class="">
+					<label>Steps <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_steps" value="" class="d-inline-block" [(ngModel)]="selected.control_type_steps" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+			</div>
+			<!-- Control type: Decrement -->
+			<div class="" *ngIf="selected.control_type=='Decrement'">
+				<div class="">
+					<label>On <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_on" value="" class="d-inline-block" [(ngModel)]="selected.control_type_on" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+				<div class="">
+					<label>Steps <i class="fas fa-question-circle text-white"></i></label>
+					<input type="text" name="control_type_steps" value="" class="d-inline-block" [(ngModel)]="selected.control_type_steps" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+			</div>
+
+		</div> <!-- End custom -->
+	</div>
+
+</div>

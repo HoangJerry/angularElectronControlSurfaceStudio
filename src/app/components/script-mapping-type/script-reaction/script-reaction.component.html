@@ -1,0 +1,73 @@
+<div class="container-block">
+	<div class="d-inline-flex container-item">
+		<label class="d-inline-block">Listener</label>
+		<div class="d-inline-block border-main-content">
+			<select name="select" [(ngModel)] = "selected.reaction_listener" (change)="onChangeName()">
+				<option  *ngFor="let val of selectListener | notUndefined" disabled="{{val.value==null?'disabled':''}}"  value="{{val.value}}" >{{val.name}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="d-inline-flex container-item">
+		<label class="d-inline-block">Conditions</label>
+		<div class="d-inline-block border-main-content">
+			<div *ngFor="let condition of selected.reaction_conditions">
+				<div class="container-row" *ngIf="condition!=selected.reaction_conditions[0]">
+					<select name="select" style="width: 50px;" [(ngModel)] = "condition.outer_operator" (change)="onChangeName()">
+						<option  *ngFor="let parameter of selectOuterOperator"  value="{{parameter}}" >{{parameter}}</option>
+						option
+					</select>
+				</div>
+
+				<div class="container-row">
+					<select name="argument_1" [(ngModel)] = "condition.argument_1" (change)="onChangeName()">
+						<option  *ngFor="let val of selectArgument1 | notUndefined" disabled="{{val.value==null?'disabled':''}}" value="{{val.value}}" >{{val.name}}</option>
+					</select>
+
+					<input type="text" name="argument_1_additional" value="" class="d-inline-block" [(ngModel)]="condition.argument_1_additional" (blur)="onChangeName()" (click)="onClickInput()">
+
+					<select name="select" style="width: 40px;" [(ngModel)] = "condition.operator" (change)="onChangeName()">
+						<option  *ngFor="let val of selectOperator"  value="{{val}}" >{{val}}</option>
+					</select>
+
+					<select name="select" [(ngModel)] = "condition.argument_2" (change)="onChangeName()">
+						<option  *ngFor="let val of selectArgument2 | notUndefined" disabled="{{val.value==null?'disabled':''}}" value="{{val.value}}" >{{val.name}}</option>
+					</select>
+
+					<input type="text" style="margin-right: 0px; "name="minimum" value="" class="d-inline-block" [(ngModel)]="condition.argument_2_additional" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+			</div>
+			<div>
+				<button type="button" class="button-add-remove" (click)="onClickAddCondition()">+</button>
+				<button type="button" class="button-add-remove" (click)="onClickSubCondition()">-</button>
+			</div>
+		</div>
+	</div>
+	<div class="d-inline-flex container-item">
+		<label class="d-inline-block">Reactions</label>
+		<div class="d-inline-block border-main-content">
+			<div *ngFor="let reaction of selected.reaction_reactions">
+				<div class="container-row">
+					<select name="assignee" [(ngModel)] = "reaction.assignee" (change)="onChangeName()">
+						<option  *ngFor="let val of selectAssignee | notUndefined" disabled="{{val.value==null?'disabled':''}}" value="{{val.value}}" >{{val.name}}</option>
+					</select>
+
+					<input type="text" name="assignee_additional" value="" class="d-inline-block" [(ngModel)]="reaction.assignee_additional" (blur)="onChangeName()" (click)="onClickInput()">
+
+					<select name="select" style="width: 40px;" [(ngModel)] = "reaction.operator" (change)="onChangeName()">
+						<option  *ngFor="let val of selectOperatorReation"  value="{{val}}" >{{val}}</option>
+					</select>
+
+					<select name="value_to_assign" [(ngModel)] = "reaction.value_to_assign" (change)="onChangeName()">
+						<option  *ngFor="let val of selectArgument2 | notUndefined" disabled="{{val.value==null?'disabled':''}}"  value="{{val.value}}" >{{val.name}}</option>
+					</select>
+
+					<input type="text" style="margin-right: 0px; "name="value_to_assign_additional" value="" class="d-inline-block" [(ngModel)]="reaction.value_to_assign_additional" (blur)="onChangeName()" (click)="onClickInput()">
+				</div>
+			</div>
+			<div>
+				<button type="button" class="button-add-remove" (click)="onClickAddReaction()">+</button>
+				<button type="button" class="button-add-remove" (click)="onClickSubReaction()">-</button>
+			</div>
+		</div>
+	</div>
+</div>

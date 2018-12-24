@@ -1,0 +1,9 @@
+<div *ngFor="let key of keys; let i=index" class="d-inline-block">
+	<div class="white-key" *ngIf="(i+controller_parent.control_keys_object.start_at)%12==1||(i+controller_parent.control_keys_object.start_at)%12==3||(i+controller_parent.control_keys_object.start_at)%12==5||(i+controller_parent.control_keys_object.start_at)%12==6||(i+controller_parent.control_keys_object.start_at)%12==8||(i+controller_parent.control_keys_object.start_at)%12==10||(i+controller_parent.control_keys_object.start_at)%12==0"  [ngStyle]="{'width.px':square_size*controller_parent.control_keys_width/controller_parent.control_keys_object.white_keys,'height.px':square_size*controller_parent.control_keys_height,'border-left':i==0?'':'0','border-right':key.next_white!=undefined&&selected!=null&&key.next_white.id==selected.id?'0':'','box-sizing':'border-box'}" title ="{{key.name}}" [ngClass]="selected!=null&&key==selected?'active':''" 
+	(click)="onClickKey(key)"
+	>
+	</div>
+
+	<div class="black-key position-absolute" title ="{{key.name}}" *ngIf="(i+controller_parent.control_keys_object.start_at)%12==2||(i+controller_parent.control_keys_object.start_at)%12==4||(i+controller_parent.control_keys_object.start_at)%12==7||(i+controller_parent.control_keys_object.start_at)%12==9||(i+controller_parent.control_keys_object.start_at)%12==11" [ngStyle]="{'width.px':square_size*controller_parent.control_keys_width/controller_parent.control_keys_object.white_keys*0.7,'height.px':square_size*controller_parent.control_keys_height*0.7,'top.px':padding, 'left.px':padding+square_size*controller_parent.control_keys_width/controller_parent.control_keys_object.white_keys*(key.next_white.white_key_no-1.4)}" [ngClass]="selected!=null&&key==selected?'active':''" (click)="onClickKey(key)">
+	</div>
+</div>

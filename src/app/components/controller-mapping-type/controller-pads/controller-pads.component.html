@@ -1,0 +1,44 @@
+<div class="container-block">
+	<div class="">
+		<label>Type</label>{{selected.type.type}}
+	</div>
+	<div class="">
+		<label>Name</label>
+		<select name="select" [(ngModel)] = "selected.name" (blur)="onChangeName()">
+			<option  *ngFor="let pad_name of pads_names_show"  value="{{pad_name.name}}" >{{pad_name.name}}</option>
+			option
+		</select>
+	</div>
+</div>
+<div class="container-block pads">
+	<div class="">
+		<label>Width </label>
+		<input type="number" name="control_pads_width" value="" class="d-inline-block" [(ngModel)]="selected.control_pads_width" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Height </label>
+		<input type="number" name="control_pads_height" value="" class="d-inline-block" [(ngModel)]="selected.control_pads_height" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Left </label>
+		<input type="number" name="control_pads_left" value="" class="d-inline-block" [(ngModel)]="selected.control_pads_left" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+	<div class="">
+		<label>Top </label>
+		<input type="number" name="control_pads_top" value="" class="d-inline-block" [(ngModel)]="selected.control_pads_top" (blur)="onChangeName()" (click)="onClickInput()">
+	</div>
+</div>
+<div class="container-block pads">
+	<div class="">
+		<label>Rows </label>
+		<select name="control_pads_rows" [(ngModel)] = "selected.control_pads_rows" (blur)="onChangeName()">
+			<option  *ngFor="let value of selectRowCol"  value="{{value}}" >{{value}}</option>
+		</select>
+	</div>
+	<div class="">
+		<label>Columns </label>
+		<select name="control_pads_columns" [(ngModel)] = "selected.control_pads_columns" (blur)="onChangeName()">
+			<option  *ngFor="let value of selectRowCol"  value="{{value}}" >{{value}}</option>
+		</select>
+	</div>
+</div>
