@@ -14,16 +14,16 @@
 	 <div class="">
 		<label>Maximum</label>
 		<div class="d-inline-block position-relative">
-			<input class="form-control-range" type="range"  min="{{selected.type.type=='Parameter'?0:-70}}" max="{{selected.type.type=='Parameter'?127:0}}" step="{{selected.type.type=='Parameter'?1:0.001}}"name="maximum" class="d-inline-block" [(ngModel)]="selected.maximum" (blur)="onChangeName()" (click)="onClickInput()">
-			<p *ngIf="dbclick==null||dbclick==undefined" class="position-absolute min-max-value" (dbclick)="dbclick='maximum'">{{selected.maximum | minMax : selected.type.type}}</p>
+			<input class="form-control-range" type="range"  min="0" max="100" step="1" name="maximum" class="d-inline-block" [(ngModel)]="selected.maximum" (blur)="onChangeName()" (click)="onClickInput()" [value]="100">
+			<p class="position-absolute min-max-value" (dblclick)="dbclick='maximum'">{{selected.maximum | minMax : selected.type.type}}</p>
 			<input class="position-absolute" style="left: 0" step="0.1" *ngIf="dbclick=='maximum'" type="number" [(ngModel)]="selected.maximum" (blur)="dbclick=null; onChangeName()" (click)="onClickInput()" autofocus>
 		</div>
 	</div>
 	 <div class="">
 		<label>Minimum</label>
 		<div class="d-inline-block position-relative">
-			<input class="form-control-range" type="range"  min="{{selected.type.type=='Parameter'?0:-70}}" max="{{selected.type.type=='Parameter'?127:0}}" step="{{selected.type.type=='Parameter'?1:0.001}}" name="minimum" class="d-inline-block" [(ngModel)]="selected.minimum" (blur)="onChangeName()" (click)="onClickInput()" [value]="selected.type.type=='Parameter'?0:-70">
-			<p class="position-absolute min-max-value" (dbclick)="dbclick='minimum'">{{selected.minimum | minMax : selected.type.type}}</p>
+			<input class="form-control-range" type="range"  min="0" max="100" step="1" name="minimum" class="d-inline-block" [(ngModel)]="selected.minimum" (blur)="onChangeName()" (click)="onClickInput()" [value]="0">
+			<p class="position-absolute min-max-value" (dblclick)="dbclick='minimum'">{{selected.minimum | minMax : selected.type.type}}</p>
 			<input class="position-absolute" style="left: 0" step="0.1" *ngIf="dbclick=='minimum'" type="number" [(ngModel)]="selected.minimum" (blur)="dbclick=null; onChangeName()" (click)="onClickInput()" autofocus>
 		</div>
 	</div>

@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
 	});
 	var userData = JSON.parse(sessionStorage.getItem('UsersData'));
       if(userData != null){
-        if(userData.user.roles[5] == 'lifetime'){
+        if(userData.user.roles[9] == 'Control Surface Studio'){
           this.fileService.purchasedApp = true;
         }
         else{
@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
   	this.router.navigate(['/']);
   }
   goTo(){
-  	shell.openExternal("https://remotify.io");
+  	shell.openExternal("https://remotify.io/product/control-surface-studio");
   }
 
 }

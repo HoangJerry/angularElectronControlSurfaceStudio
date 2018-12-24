@@ -38,7 +38,7 @@ export class FileService {
     }
     if (!this.electron.fs.existsSync(this.dir+'script/')){
         this.electron.fs.mkdirSync(this.dir+'script/');
-        let scripts_to_import = ["/midiscripts/2_script.json"];
+        let scripts_to_import = ["/midiscripts/my_first_script.json"];
         for (let s of scripts_to_import){
           this.http.get("https://remotify.io/serve_json.php?f="+s,{headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((data)=>{
             this.importService.changeImportScript(data);
@@ -48,7 +48,7 @@ export class FileService {
     if (!this.electron.fs.existsSync(this.dir+'controller/')){
         this.electron.fs.mkdirSync(this.dir+'controller/');
 
-        let controllers_to_import = ["/midicontrollers/1_controller.json", "/midicontrollers/this_is_a_controller.json"];
+        let controllers_to_import = ["/midicontrollers/akai_midimix.json", "/midicontrollers/dj_tt_midi_fighter_twister.json"];
 
         for (let s of controllers_to_import){
           this.http.get("https://remotify.io/serve_json.php?f="+s,{headers: new HttpHeaders().set('Content-Type', 'application/json')}).subscribe((val:any)=>{

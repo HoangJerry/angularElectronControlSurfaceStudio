@@ -677,7 +677,7 @@ export class ScriptManagerComponent implements OnInit {
       }
   }
    goTo(){
-    shell.openExternal("https://remotify.io");
+    shell.openExternal("https://remotify.io/product/control-surface-studio");
   }
 
 }

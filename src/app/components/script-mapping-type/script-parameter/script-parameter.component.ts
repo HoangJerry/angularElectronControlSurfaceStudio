@@ -12,14 +12,8 @@ export class ScriptParameterComponent implements OnInit {
     this.selected=name;
     this.onClickInput();
     if(this.selected.minimum==undefined){
-      if (this.selected.type.type=='Parameter'){
-        this.selected.minimum = 0;
-        this.selected.maximum = 127;
-      }
-      else{
-        this.selected.minimum = -70;
-        this.selected.maximum = 0;
-      }
+      this.selected.minimum = 0;
+      this.selected.maximum = 100;
       this.onChangeName()
     }
   }
@@ -41,8 +35,9 @@ export class ScriptParameterComponent implements OnInit {
   }
 
   dbClickEvent = ($event) => {
-    $(event.target).siblings().last().click();
+    $(event.target).siblings().last().focus();
   }
+
 
   onClickInput = () => {
     this.selectedtemp = JSON.parse(JSON.stringify(this.selected));

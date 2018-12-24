@@ -33,11 +33,10 @@ path : any;
 				       osversion = osversion.split('.');
 
 				       if(osversion[0] == 5){
-				        this.path = 'C:\\Documents and Settings'+process.env.username+'\\Application Data\\Ableton\\';
+				        this.path = 'C:\\Documents and Settings\\'+process.env.username+'\\Application Data\\Ableton\\';
 		      		}
 		       		else{
-				        this.path = 'C:\\Users'+process.env.username+'\\AppData\\Roaming\\Ableton\\';
-				        //this.path = 'C:\\Users\\Abhishek\\Control Surface Studio\\';
+				        this.path = 'C:\\Users\\'+process.env.username+'\\AppData\\Roaming\\Ableton\\';
 				      }
 				      var versions = this.getDirectories(this.path);
 				      var data = [];
@@ -63,7 +62,7 @@ path : any;
           $('.error-setting').html('Ableton Live Location not set<br>Live version not set<br>Log.txt location not found');
           }
 
-        else if(this.abelton_location == undefined || this.abelton_location == ''){
+          else if(this.abelton_location == undefined || this.abelton_location == ''){
           
             this.fileService.isError = true;
         
@@ -83,6 +82,7 @@ path : any;
   }
 
   ngAfterViewInit() {
+
   }
 
   ngOnInit() {

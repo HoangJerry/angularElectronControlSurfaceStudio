@@ -14,12 +14,12 @@ export class ScriptMappingTypeComponent implements OnInit {
     this.onClickInput();
     if(this.selected.minimum==undefined){
       if (this.selected.type.type=='Volume'){
-        this.selected.minimum = -69;
-        this.selected.maximum = 0;
+        this.selected.minimum = 0;
+        this.selected.maximum = 85;
       }
       if (this.selected.type.type=='Pan'){
-        this.selected.minimum = -50;
-        this.selected.maximum = 50;
+        this.selected.minimum = 25;
+        this.selected.maximum = 75;
       }
       if (this.selected.type.type=='Tempo'){
         this.selected.minimum = 80;

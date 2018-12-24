@@ -30,13 +30,14 @@ export class ControllerKnobComponent implements OnInit {
   @Input() 
   set selectedData(name: string) {
     this.selected = name;
+    this.onClickInput();
     if (this.controllers!=undefined&&this.knob_names!=undefined  ){
       this.onChangeController();
     }
   }
 
   selected:any;
-  selectedtemp : any;
+  selectedtemp:any;
   selectAlignTo = ["left","center"];
   knob_names :any;
   knob_names_show :any;
@@ -61,12 +62,18 @@ export class ControllerKnobComponent implements OnInit {
   }
 
   onClickInput = () => {
-  	let temp = [];
-    temp.push(this.selected);
-    this.selectedtemp = temp.slice(0,0)[0];
+    this.selectedtemp = JSON.parse(JSON.stringify(this.selected));
+    console.log(this.selectedtemp);
+    console.log("change!!!!!!!!!!!")
   }
+
   onChangeName = (script_id?) => {
+    console.log(this.selectedtemp!=this.selected)
     if (this.selectedtemp!=this.selected && this.selected.name) {
+      console.log("ch");
+      if (this.selectedtemp==undefined||(this.selectedtemp!=undefined&&this.selectedtemp.control_knob_radius!=this.selected.control_knob_radius)){
+        localStorage.setItem("control_knob_radius","true");
+      }
 			this.changeSelected.emit(this.selected);
     }
   }

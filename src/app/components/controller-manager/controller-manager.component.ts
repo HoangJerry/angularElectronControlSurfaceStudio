@@ -356,7 +356,8 @@ export class ControllerManagerComponent implements OnInit {
 
   onChangeName = (script_id?) => {
     // Change square or width or height
-    if (this.controllers[this.selected.controller][this.selected.id].type.type=="Knob"){
+    if (this.controllers[this.selected.controller][this.selected.id].type.type=="Knob"&& localStorage.hasOwnProperty("control_knob_radius")){
+      localStorage.removeItem('control_knob_radius');
       this.midiControllerService.changeController(this.controllers[-1])
     }
     setTimeout(() => {this.midiControllerService.changeController(this.controllers[this.selected.controller])},1000)

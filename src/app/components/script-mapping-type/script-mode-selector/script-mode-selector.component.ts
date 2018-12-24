@@ -24,7 +24,7 @@ export class ScriptModeSelectorComponent implements OnInit {
   ngOnInit() {
   	this.midiControllerService.currentScript
       .subscribe(script => {
-        this.scripts = script.filter(s=>{if(s!=null){return s.type.type=="Mode"}});
+        this.scripts = [{"id":"Previous Mode","name":"Previous Mode"}].concat(script.filter(s=>{if(s!=null){return s.type.type=="Mode"}}));
     });
   }
 

@@ -53,35 +53,12 @@ export class toClassCss implements PipeTransform {
 @Pipe({ name: 'minMax' })
 export class minMax implements PipeTransform {
   transform(number, type) {
-    if (type=='Send'){
-      if (number==-70){
-        number = '-inf'
-      }
-      return number+' dB'
-    }
-    if (type=='Volume'){
-      if (number==-69){
-        number = '-inf'
-      }
-      return number+' dB'
-    }
-    if (type=='Pan'){
-      if (number<0){
-        number = number*-1+'L'
-      }else{
-        if(number>0){
-          number = number+'R'
-        }
-        else{
-          number = 'C'
-        }
-      }
-      return number
+    if (type=='Send'||type=='Volume'||type=='Pan'||type=='Parameter'){
+      return number+'%'
     }
 
     if (type=='Tempo'){
       return number+' bpm'
     }
-    return number
   }
 }

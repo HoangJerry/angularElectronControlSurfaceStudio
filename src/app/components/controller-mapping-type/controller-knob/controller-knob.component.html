@@ -13,7 +13,7 @@
 <div class="container-block knob">
 	<div class="">
 		<label>Radius </label>
-		<input type="number" name="control_knob_radius" value="" class="d-inline-block" [(ngModel)]="selected.control_knob_radius" (blur)="onChangeName()" (click)="onClickInput()">
+		<input type="number" name="control_knob_radius" value="" class="d-inline-block" [(ngModel)]="selected.control_knob_radius" (blur)="onChangeName()" (focus)="onClickInput()">
 	</div>
 	<div class="">
 		<label>Left </label>
